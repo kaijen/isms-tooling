@@ -12,3 +12,4 @@ mit Open-Source-Werkzeugen pragmatisch umsetzen können — ohne große Budgets,
 - [Aufgaben & Tool-Klassen](aufgaben) — ISMS-Prozesse generisch beschrieben
 - [Werkzeugkandidaten](werkzeuge) — Bewertung konkreter Open-Source-Tools
 - [Szenarien](szenarien) — Konkrete Werkzeugkombinationen für verschiedene Ausgangssituationen
+- [Testdaten & Demo](testdaten) — Statische und KI-generierte Beispieldaten für Demos
