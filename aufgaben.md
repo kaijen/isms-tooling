@@ -44,7 +44,7 @@ bewertet.
 | Risikobehandlung verknüpfen | IT | Verlinkung zu Behandlungs-Tickets (ggf. anderes Werkzeug) |
 | Risikoakzeptanz dokumentieren | IT | Statusübergang mit Begründung und Genehmiger |
 | Risikoreporting | IT | Filteransichten nach Status, Risikowert, Fälligkeit |
-| Risikoregister publizieren | SSG, CI | Automatische Veröffentlichung aus Ticket-Export oder Markdown |
+| Risikoregister publizieren | IT | Reporting über Filteransichten im Ticket-System; Export für externe Empfänger (Auditoren, Management) noch offen |
 
 ---
 
@@ -102,15 +102,10 @@ bewertet.
 
 ---
 
-## Zusammenfassung
+## Offene Punkte
 
-Die meisten ISMS-Aufgaben lassen sich mit **zwei Tool-Klassen** abdecken:
-
-- **VCS** für alles, was Dokumentencharakter hat und Freigaben benötigt
-- **IT** für alles, was einen Lebenszyklus, Verantwortlichkeiten und Fristen hat
-
-**SSG + CI** sind der Mechanismus, der VCS-Inhalte für alle zugänglich macht.
-**KI** reduziert den Formulierungsaufwand und senkt die Hemmschwelle zur konsequenten Dokumentation.
-
-Die Tool-Klassen sind bewusst voneinander getrennt — jede erfüllt eine spezifische Funktion
-und kann unabhängig durch das jeweils geeignetste Werkzeug realisiert werden.
+| Thema | Status |
+|-------|--------|
+| SSG-Zugriffssteuerung | Offen — zu klären welche Inhalte intern/extern sichtbar sein sollen |
+| Risikoregister-Export | Offen — Weg von Ticket-Filteransicht zu auditortauglichem Dokument |
+| Ticket-System-Konfiguration | Verschiedene Ansätze je Szenario zu beleuchten |

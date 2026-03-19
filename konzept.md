@@ -37,10 +37,6 @@ verkaufen:
 - **Nachvollziehbare Freigaben** über Pull Requests (Vier-Augen-Prinzip durch Review und Merge)
 - **Vergleichbarkeit** von Versionen durch Diffs
 
-Der Einwand, Git sei für Nicht-Entwickler unzumutbar, greift in der Praxis nicht. Die Einarbeitung
-erfordert Überzeugungsarbeit — diese zahlt sich aus, weil die Zielgruppe dauerhaft mit einem
-Werkzeug arbeitet, das sie ohnehin in anderen Kontexten kennt oder kennenlernen sollte.
-
 Wo eine Web-UI benötigt wird, bieten selbst-gehostete Plattformen wie Gitea oder GitLab eine
 zugängliche Oberfläche, ohne das Grundprinzip aufzugeben.
 
@@ -125,7 +121,13 @@ Aus den Leitprinzipien ergeben sich folgende Anforderungen:
 - Konfigurierbare Statusübergänge
 - Verlinkung zwischen Tickets
 - Filterung und Listenansichten für Reporting
+- Zugriffssteuerung per Queue oder Projekt
 - Open Source, selbst-hostbar
+
+Die Konfiguration eines Ticket-Systems für ISMS-Zwecke ist echter Initialaufwand: Workflows,
+Custom Fields und Templates müssen eingerichtet und gepflegt werden. Dieser Aufwand ist
+einmalig und zahlt sich durch konsistente Nachweisführung aus — er sollte aber in der
+Einführungsplanung explizit eingeplant werden.
 
 ### Static Site Generator
 - Markdown-kompatibel
@@ -154,6 +156,7 @@ Konkret bedeutet das:
 | Managementbewertung (9.3) | Recurring Ticket mit Tagesordnung und Ergebnisprotokoll |
 | Awareness (7.3) | Schulungs-Tickets mit Teilnahmenachweis |
 | Notfallvorsorge (8.1) | Git-Clones als dokumentiertes Backup-Konzept |
+| Zugriffssteuerung (A.5.15) | Queues/Projekte im Ticket-System je Zuständigkeitsbereich; SSG-Zugriffskonzept offen |
 
 Der Ansatz funktioniert nur, wenn Konventionen eingehalten werden: Commit-Messages müssen
 aussagekräftig sein, Statusübergänge müssen begründet werden, Templates müssen gepflegt werden.
