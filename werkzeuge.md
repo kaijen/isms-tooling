@@ -4,8 +4,11 @@ title: Werkzeugkandidaten
 permalink: /werkzeuge/
 ---
 
-Bewertung von Open-Source-Kandidaten je Tool-Klasse anhand der in
+Bewertung von Kandidaten je Tool-Klasse anhand der in
 [Aufgaben & Tool-Klassen](../aufgaben) abgeleiteten Anforderungen.
+Jede Kategorie listet sowohl selbst-gehostete Open-Source-Lösungen als auch relevante
+Cloud-/SaaS-Alternativen. Die grundsätzliche Abwägung zwischen beiden Betriebsmodellen
+ist am Ende dieses Dokuments beschrieben.
 
 Legende: ✓ vorhanden · ~ eingeschränkt oder via Plugin · ✗ nicht vorhanden
 
@@ -34,6 +37,9 @@ Anforderungen: PR/Review-Workflow, CI/CD-Integration, Zugriffssteuerung, selbst-
   Templates und Labels ausreichend für einfache Setups; Custom Fields und Recurring fehlen in CE.
 - **GitHub**: Keine Selbst-Hosting-Option. Für Organisationen die bereits GitHub nutzen
   dennoch pragmatisch — GitHub Actions und Pages sind ausgereift.
+
+**Cloud-Alternativen**: GitHub.com (SaaS), GitLab.com (SaaS), Codeberg.org
+(Forgejo-basiert, gemeinnützig, kostenlos für OSS und kleine Organisationen).
 
 ---
 
@@ -79,6 +85,11 @@ Open Source, selbst-hostbar.
   die Anforderungen einfach sind. Custom Fields und Recurring fehlen in der CE-Edition —
   für vollständiges ISMS-Tracking nicht empfehlenswert ohne EE-Lizenz.
 
+**Cloud-Alternativen**: Plane Cloud (SaaS, gehostete Plane-Instanz), Jira Cloud
+(Atlassian, proprietär, weit verbreitet, starke Integration mit Confluence),
+Linear (SaaS, moderne UI, kein Self-Hosting). Keiner der Cloud-Kandidaten ist Open Source;
+Plane Cloud ist die einzige Option mit self-hosted Fallback ohne Datenmigration.
+
 ---
 
 ## Kanban-Board (Projektsteuerung)
@@ -106,6 +117,10 @@ selbst-hostbar. Kanban-Boards ergänzen den Issue Tracker — sie ersetzen ihn n
   ohne Wiederholungsaufwand. UI wirkt veraltet, ist aber vollständig. Aktive Entwicklung.
 - **Kanboard**: Sehr leichtgewichtig, minimale Infrastruktur. Checklisten und Swimlanes
   vorhanden, Templates rudimentär. Gut für kleine Teams mit einfachen Anforderungen.
+**Cloud-Alternativen**: Trello (Atlassian, proprietär, weit verbreitet),
+Asana (proprietär, SaaS). Beide ohne Self-Hosting-Option und ohne OSS-Lizenz —
+für ISMS-Zwecke nur akzeptabel wenn Datenschutzanforderungen über DPA abgedeckt sind.
+
 - **Planka**: Modernste UI, v2.0 bringt Custom Fields, mehrere Task-Listen pro Karte und
   OIDC-SSO. Lizenz: Fair-Code (PLANKA Community License v1.1) — internes Selbst-Hosting für
   die eigene Organisation ist explizit kostenfrei erlaubt; eine kommerzielle Lizenz wird nur
@@ -158,6 +173,11 @@ unterschiedliche Zwecke:
 - **DokuWiki**: Bewährt und extrem ressourcenschonend (dateibasiert, keine Datenbank).
   Markdown und API nur über Plugins — Abhängigkeit von Plugin-Pflege. UI veraltet.
   Für neue Setups kein bevorzugter Kandidat.
+
+**Cloud-Alternativen**: Confluence Cloud (Atlassian, proprietär, Marktstandard in
+Unternehmensumgebungen — hohe Verbreitung erleichtert Akzeptanz, aber Vendor Lock-in
+und Datenschutzfragen sind zu klären), GitBook (Markdown-nativ, API, kostenlose Tier für
+kleine Teams, SaaS-only), Notion (proprietär, kein Markdown-Export ohne Verluste).
 
 ---
 
@@ -246,3 +266,59 @@ Anforderungen: Markdown, CI-Integration, Suchfunktion, niedrige Einstiegshürde.
 Die Kombination **Forgejo + Plane + DataGerry + MkDocs** wird in den Szenarien als
 Referenz-Stack verwendet. Die Variante mit **OTOBO** statt Plane ist besonders geeignet
 wenn wiederkehrende Tickets und Queue-basierte Zugriffssteuerung im Vordergrund stehen.
+
+---
+
+## Self-hosted vs. SaaS
+
+Die Wahl des Betriebsmodells ist für ein ISMS keine rein technische Entscheidung —
+sie hat direkte Auswirkungen auf Datenschutz, Nachweisführung und Betriebsaufwand.
+
+### Bewertungsmatrix
+
+| Kriterium | Self-hosted | SaaS |
+|-----------|-------------|------|
+| **Datensouveränität** | Vollständige Kontrolle | Daten beim Anbieter; DPA erforderlich |
+| **DSGVO / NIS2** | Einfacher nachweisbar | Auftragsverarbeitungsvertrag, Drittlandtransfer prüfen |
+| **Betriebsaufwand** | Hoch (Updates, Backup, Monitoring) | Gering (Anbieter verantwortet Betrieb) |
+| **Verfügbarkeit** | Abhängig von eigener Infrastruktur | Typisch höhere SLA |
+| **Kosten** | Infrastruktur + Personalaufwand | Nutzungsgebühren, vorhersehbar |
+| **Vendor Lock-in** | Gering (offene Formate, migrierbar) | Hoch (Export oft eingeschränkt) |
+| **Anpassbarkeit** | Vollständig | Begrenzt auf Anbieter-Features |
+| **Audit-Zugang** | Direkter Zugriff auf alle Logs | Logs vom Anbieter, ggf. eingeschränkt |
+
+### Besonderheit für ISMS-Daten
+
+Nicht alle ISMS-Inhalte sind gleich schutzbedürftig. Eine differenzierte Betrachtung
+nach Inhalt ist pragmatischer als eine pauschale Entscheidung:
+
+| Inhalt | Schutzbedarf | SaaS vertretbar? |
+|--------|-------------|-----------------|
+| Freigegebene Richtlinien, Awareness | Gering | Ja, auch öffentlich |
+| Verfahrensanweisungen, Handbücher | Mittel | Ja, mit DPA |
+| Maßnahmen-Tracking, Audit-Nachweise | Mittel–Hoch | Mit DPA und EU-Hosting |
+| Risikoregister (operativ, technisch) | Hoch | Nur mit starker Vertragsbasis |
+| Strategisches Risikoregister | Sehr hoch | Nein — Self-hosted empfohlen |
+| Incident-Details, Schwachstellen | Sehr hoch | Nein — Self-hosted empfohlen |
+
+### Hybride Strategie
+
+Die pragmatische Antwort für die meisten Organisationen ist kein Entweder-Oder:
+
+```
+SaaS (GitHub, Confluence)     →  Dokumentation, Policies, Wiki
+Self-hosted (OTOBO, DataGerry) →  Risiken, Incidents, Asset-Inventar
+```
+
+VCS und SSG können in SaaS betrieben werden wenn nur freigegebene, weniger
+schutzbedürftige Inhalte dort landen. Das Risikoregister und Incident-Tracking
+bleiben self-hosted unter eigener Kontrolle.
+
+### Empfehlung je Zielgruppe
+
+| Zielgruppe | Empfehlung |
+|-----------|------------|
+| KMU, kein eigenes IT-Team | SaaS für alles ausser strategischen Risiken; DPA prüfen |
+| Supplier mit Zertifizierungspflicht | Hybrid: SaaS für Docs, self-hosted für Risiken |
+| NIS2-betroffen, eigenes IT-Team | Self-hosted bevorzugt; SaaS für unkritische Inhalte |
+| Modernisierer (von SharePoint) | SaaS als Übergangslösung, mittelfristig self-hosted |
