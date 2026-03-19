@@ -95,7 +95,7 @@ selbst-hostbar. Kanban-Boards ergänzen den Issue Tracker — sie ersetzen ihn n
 | Labels / Tags | ✓ | ✓ | ✓ |
 | Zugriffssteuerung (Board-Ebene) | ✓ | ✓ | ✓ |
 | Selbst-hostbar | ✓ | ✓ | ✓ |
-| Open Source | ✓ (MIT) | ✓ (MIT) | ✓ (AGPL) |
+| Open Source | ✓ (MIT) | ✓ (MIT) | ~ (Fair-Code, kommerziell lizenzpflichtig) |
 | Ressourcenbedarf | mittel | gering | gering |
 | Moderne UI | ~ | ✗ | ✓ |
 
@@ -106,8 +106,11 @@ selbst-hostbar. Kanban-Boards ergänzen den Issue Tracker — sie ersetzen ihn n
   ohne Wiederholungsaufwand. UI wirkt veraltet, ist aber vollständig. Aktive Entwicklung.
 - **Kanboard**: Sehr leichtgewichtig, minimale Infrastruktur. Checklisten und Swimlanes
   vorhanden, Templates rudimentär. Gut für kleine Teams mit einfachen Anforderungen.
-- **Planka**: Modernste UI (Trello-ähnlich), einfache Einrichtung. Schwachstelle für
-  ISMS-Zwecke: keine nativen Karten-Templates (Stand 2025).
+- **Planka**: Modernste UI, v2.0 bringt Custom Fields, mehrere Task-Listen pro Karte und
+  OIDC-SSO. Zwei Schwachstellen für ISMS-Zwecke: Karten-Templates fehlen weiterhin (offenes
+  Issue #1397, kein Roadmap-Commitment, Stand März 2026) — und das Lizenzmodell ist seit v2.0
+  Fair-Code statt AGPL, d.h. für kommerzielle Nutzung ist eine Pro-Lizenz erforderlich.
+  Kein geeigneter Kandidat wenn OSS-Anforderung und Templates beide gelten.
 
 ---
 
