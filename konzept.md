@@ -136,6 +136,19 @@ Custom Fields und Templates müssen eingerichtet und gepflegt werden. Dieser Auf
 einmalig und zahlt sich durch konsistente Nachweisführung aus — er sollte aber in der
 Einführungsplanung explizit eingeplant werden.
 
+### Asset Management / CMDB
+- Frei definierbare Objekt-Schemata (keine starren Asset-Typen)
+- Pflichtfelder je Asset-Typ konfigurierbar (Verantwortlicher, Schutzbedarf, Standort)
+- Verlinkung zu Risiko-Tickets (über ID oder API-Integration)
+- Filterung und Export für Auditor-Zugriff
+- Open Source, selbst-hostbar
+
+Asset-Management ist das am häufigsten unterschätzte Teilproblem des ISMS. Ohne
+strukturiertes Inventar mit klaren Eigentümern und Schutzbedarfen ist eine valide
+Risikobeurteilung nicht möglich. Die Flexibilität des Schemas ist entscheidend:
+ISMS-Assets umfassen nicht nur IT-Infrastruktur, sondern auch Datensätze, Prozesse,
+Dienstleister und Räumlichkeiten — eine starre CMDB genügt nicht.
+
 ### Static Site Generator
 - Markdown-kompatibel
 - CI/CD-Integration (GitHub Actions, Gitea Actions)

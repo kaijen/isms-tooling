@@ -16,6 +16,7 @@ bewertet.
 | **SSG** | Static Site Generator | Transformation von Markup zu statischen Webseiten |
 | **CI** | CI/CD-Pipeline | Automatisierte Builds und Deployments bei Git-Events |
 | **IT** | Issue Tracker | Tickets, Status-Workflows, Felder, Templates, Wiederholung |
+| **AM** | Asset Management / CMDB | Inventar mit frei definierbaren Schemata, Verlinkung zu Risiken |
 | **KI** | KI-Assistent | Textentwürfe, Formulierungen, Konsistenzprüfung |
 
 ---
@@ -88,6 +89,23 @@ bewertet.
 | Lieferantenbewertung planen | IT | Recurring Ticket je Lieferant |
 | Fragebogen-Antworten dokumentieren | IT, VCS | Ergebnisse als Ticket-Kommentar oder Markdown-Datei |
 | Vertragsanforderungen verwalten | VCS | Anforderungsdokument im Repository |
+
+---
+
+### Asset Management
+
+| Aufgabe | Tool-Klassen | Umsetzung |
+|---------|-------------|-----------|
+| Asset-Inventar aufbauen | AM | Objekte je Asset-Typ mit frei definierbarem Schema |
+| Asset-Typen definieren | AM | Schemata für Server, Anwendungen, Datensätze, Prozesse, Standorte |
+| Eigentümer & Klassifikation | AM | Felder: Verantwortlicher, Schutzbedarf (Vertraulichkeit, Integrität, Verfügbarkeit) |
+| Assets mit Risiken verknüpfen | AM, IT | Asset-Referenz im Risiko-Ticket; Verlinkung über ID oder API |
+| Asset-Inventar aktuell halten | AM, IT | Änderungsticket bei Lifecycle-Ereignissen (Inbetriebnahme, Außerbetriebnahme) |
+| Asset-Inventar publizieren | AM | Filteransicht oder Export für Auditoren |
+
+**Besonderheit**: Das Asset-Inventar ist die Grundlage der Risikobeurteilung — Risiken ohne
+Asset-Referenz sind nicht vollständig. Die Verknüpfung AM → IT muss im Prozess verankert
+sein: Kein Risiko-Ticket ohne zugeordnetes Asset.
 
 ---
 
