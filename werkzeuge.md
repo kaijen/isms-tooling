@@ -100,33 +100,31 @@ Das Kernproblem klassischer CMDB-Lösungen für ISMS-Zwecke: starre Asset-Typen 
 IT-Infrastruktur ausgelegt sind. Ein ISMS-Inventar umfasst aber auch Datensätze, Prozesse,
 Dienstleister und Räume — das Schema muss frei definierbar sein.
 
-| Kriterium | DataGerry | i-doit (Community) | Ralph | Snipe-IT |
-|-----------|:-:|:-:|:-:|:-:|
-| Frei definierbare Schemata | ✓ | ✓ | ~ | ✗ |
-| Pflichtfelder je Typ | ✓ | ✓ | ~ | ~ |
-| ISMS-relevante Asset-Typen | ✓ | ✓ | ✗ (IT-fokus) | ✗ (IT-fokus) |
-| Verlinkung zwischen Objekten | ✓ | ✓ | ~ | ✗ |
-| REST API (für IT-Integration) | ✓ | ✓ | ✓ | ✓ |
-| Export (für Auditoren) | ✓ | ✓ | ~ | ~ |
-| Selbst-hostbar | ✓ | ✓ | ✓ | ✓ |
-| Open Source | ✓ (GPL) | ~ (Community gratis) | ✓ (Apache) | ✓ (AGPL) |
-| Ressourcenbedarf | gering | mittel | gering | gering |
-| Moderne UI | ~ | ~ | ~ | ✓ |
+Der Fokus liegt auf ISMS-spezifischem Asset-Management — nicht auf IT-CMDB. Die IT-Abteilung
+betreibt ihre eigene CMDB (i-doit, NetBox o.ä.); das ISMS-Inventar erfasst Informationsassets,
+Prozesse, Organisationseinheiten und Dienstleister. Wo sinnvoll, kann eine Referenz auf die
+IT-CMDB als Bezugsobjekt im Risiko-Ticket eingetragen werden — eine Integration ist nicht
+zwingend erforderlich.
+
+| Kriterium | DataGerry |
+|-----------|:-:|
+| Frei definierbare Schemata | ✓ |
+| Pflichtfelder je Typ konfigurierbar | ✓ |
+| ISMS-relevante Asset-Typen abbildbar | ✓ |
+| Verlinkung zwischen Objekten | ✓ |
+| REST API | ✓ |
+| Export (für Auditoren) | ✓ |
+| Selbst-hostbar | ✓ |
+| Open Source | ✓ (GPL) |
+| Ressourcenbedarf | gering |
 
 **Einschätzung**
 
-- **DataGerry**: Beste Passung für ISMS-Anforderungen. Objekt-Typen und -Schemata sind
-  vollständig frei definierbar — Server, Anwendungen, Datensätze, Prozesse, Dienstleister
-  lassen sich alle abbilden. REST API ermöglicht Verlinkung mit Risiko-Tickets im Issue
-  Tracker. Aktiv entwickelt, schlanke Architektur.
-- **i-doit Community**: Umfangreichere CMDB-Funktionen, viele vordefinierte Asset-Typen,
-  erweiterbar. Community-Edition funktional ausreichend. Lizenzmodell der kommerziellen
-  Erweiterungen beobachten.
-- **Ralph**: IT-Asset-Management mit Fokus auf Rechenzentrum und Hardware-Lifecycle.
-  Für reine IT-Infrastruktur gut geeignet, für ISMS-Vollabdeckung (Datensätze, Prozesse)
-  zu eingeschränkt.
-- **Snipe-IT**: Hardware-Asset-Management. Für ISMS-Zwecke zu eingeschränkt — kein
-  geeigneter Kandidat für den Anforderungsumfang.
+- **DataGerry**: Einziger evaluierter Kandidat mit vollständig freien Objekt-Schemata und
+  explizitem ISMS-Fokus. Objekt-Typen für Informationsassets, Prozesse, Dienstleister und
+  Organisationseinheiten lassen sich ohne Anpassungsaufwand definieren. REST API ermöglicht
+  manuelle oder automatisierte Verlinkung mit dem Issue Tracker. Schlanke Architektur,
+  aktiv entwickelt.
 
 ### Verbindung Asset Management → Risikomanagement
 
@@ -171,7 +169,7 @@ Anforderungen: Markdown, CI-Integration, Suchfunktion, niedrige Einstiegshürde.
 |--------|--------------|--------------|-----------------|-----|
 | Minimale Abhängigkeiten, selbst-gehostet | Forgejo | Plane | DataGerry | MkDocs Material |
 | ITIL-orientiert, Service-Desk-nah | Forgejo | OTOBO | DataGerry | MkDocs Material |
-| Alles aus einer Hand | GitLab CE | OTOBO | i-doit Community | GitLab Pages |
+| Alles aus einer Hand | GitLab CE | OTOBO | DataGerry | GitLab Pages |
 | SaaS, kein Selbst-Hosting | GitHub | Plane (Cloud) | DataGerry | GitHub Pages |
 | Bewährt, ressourcenschonend | Forgejo | Redmine | DataGerry | MkDocs Material |
 
