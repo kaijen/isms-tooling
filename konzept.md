@@ -100,6 +100,26 @@ protokolliert, wer wann welchen Tag oder Feldwert geändert hat.
 | Verantwortlicher | Assignee | Steuerung |
 | Fälligkeit Neubewertung | Datum-Feld | Wiedervorlage |
 
+**Risikoebenen und Zugriffssteuerung**: Risiken werden nach Ebene in separate Queues
+aufgeteilt. Die Queue definiert gleichzeitig Risikoebene, Zuständigkeitskreis und
+Sichtbarkeit — ohne zusätzliche Attribute:
+
+```
+Risiken/
+├── Strategisch     → CISO, Geschäftsführung
+├── Operativ        → Prozessverantwortliche, Abteilungsleiter
+└── Technisch       → IT-Betrieb, Systemverantwortliche
+```
+
+Eskalationspfade folgen der Queue-Hierarchie. Strategische Risiken bleiben für technisches
+Personal unsichtbar — eine häufige und legitime Anforderung. Das Bezugsobjekt-Modell ist
+orthogonal zur Queue-Ebene: Ein strategisches Risiko kann einen Asset-Bezug haben oder
+keinen, unabhängig von seiner Einordnung.
+
+Diese Anforderung bevorzugt Ticket-Systeme mit nativem Queue-Konzept (OTOBO) gegenüber
+projektbasierter Zugriffssteuerung (Plane), wo dieselbe Struktur mit mehr Konfigurationsaufwand
+nachgebaut werden müsste.
+
 **Bezugsobjekt statt Pflicht-Asset**: ISO 27001:2022 fordert keine asset-zentrierte
 Risikobeurteilung. Risiken mit erzwungener Asset-Zuordnung ("das Asset ist der Prozess X")
 erzeugen Overhead ohne Erkenntnisgewinn. Das Risiko-Ticket enthält stattdessen ein optionales

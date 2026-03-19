@@ -68,12 +68,13 @@ Open Source, selbst-hostbar.
 - **Redmine**: Bewährt und ressourcenschonend. Entscheidende Funktionen (Recurring Tasks,
   Tags, Templates) über Plugins verfügbar — Abhängigkeit von Plugin-Pflege ist ein Risiko.
   UI veraltet, aber stabil.
-- **OTOBO** (OSS-Fork von OTRS, Rother OSS): ITIL-orientiertes Service-Management-System
-  mit nativer Queue-basierter Zugriffssteuerung — das passt direkt zu unserem Anforderungsprofil.
-  Prozess-Engine ermöglicht wiederkehrende und mehrstufige Workflows ohne Plugins. Dynamic Fields
-  decken Custom-Field-Bedarf ab. Stärker auf Service-Desk ausgerichtet als auf Projektmanagement,
-  was für ISMS-Prozesse (Incidents, Audits, wiederkehrende Aufgaben) gut passt. UI funktional,
-  nicht modern.
+- **OTOBO** (OSS-Fork von OTRS, Rother OSS): Stärkster Kandidat wenn Queue-basierte
+  Zugriffssteuerung und wiederkehrende Tickets Priorität haben. Queue-Hierarchie bildet
+  Risikoebenen (Strategisch / Operativ / Technisch) nativ ab — Zugriffssteuerung, Ebene
+  und Zuständigkeit werden durch die Queue-Zuordnung in einem Schritt geregelt. Prozess-Engine
+  für wiederkehrende Workflows ohne Plugins. Dynamic Fields für Custom-Field-Bedarf.
+  Service-Desk-Ausrichtung passt gut zu ISMS-Prozessen (Incidents, Audits, Meldepflichten).
+  UI funktional, nicht modern.
 - **GitLab Issues**: Ausreichend wenn GitLab bereits als VCS-Plattform gewählt wird und
   die Anforderungen einfach sind. Custom Fields und Recurring fehlen in der CE-Edition —
   für vollständiges ISMS-Tracking nicht empfehlenswert ohne EE-Lizenz.
