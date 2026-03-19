@@ -81,6 +81,36 @@ Open Source, selbst-hostbar.
 
 ---
 
+## Kanban-Board (Projektsteuerung)
+
+Anforderungen: Karten-Templates, Checklisten, Swimlanes, Fälligkeiten, Open Source,
+selbst-hostbar. Kanban-Boards ergänzen den Issue Tracker — sie ersetzen ihn nicht.
+
+| Kriterium | Wekan | Kanboard | Planka |
+|-----------|:-:|:-:|:-:|
+| Karten-Templates | ✓ | ~ | ✗ |
+| Checklisten auf Karten | ✓ | ✓ | ✓ |
+| Swimlanes | ✓ | ✓ | ~ |
+| Fälligkeiten | ✓ | ✓ | ✓ |
+| Labels / Tags | ✓ | ✓ | ✓ |
+| Zugriffssteuerung (Board-Ebene) | ✓ | ✓ | ✓ |
+| Selbst-hostbar | ✓ | ✓ | ✓ |
+| Open Source | ✓ (MIT) | ✓ (MIT) | ✓ (AGPL) |
+| Ressourcenbedarf | mittel | gering | gering |
+| Moderne UI | ~ | ✗ | ✓ |
+
+**Einschätzung**
+
+- **Wekan**: Funktional stärkster OSS-Kandidat mit nativen Karten-Templates und Swimlanes.
+  Templates ermöglichen standardisierte Initiativstrukturen (Gap-Analyse, Awareness-Kampagne)
+  ohne Wiederholungsaufwand. UI wirkt veraltet, ist aber vollständig. Aktive Entwicklung.
+- **Kanboard**: Sehr leichtgewichtig, minimale Infrastruktur. Checklisten und Swimlanes
+  vorhanden, Templates rudimentär. Gut für kleine Teams mit einfachen Anforderungen.
+- **Planka**: Modernste UI (Trello-ähnlich), einfache Einrichtung. Schwachstelle für
+  ISMS-Zwecke: keine nativen Karten-Templates (Stand 2025).
+
+---
+
 ## Asset Management / CMDB
 
 Anforderungen: Frei definierbare Objekt-Schemata, Pflichtfelder je Typ, Verlinkung zu
@@ -155,13 +185,13 @@ Anforderungen: Markdown, CI-Integration, Suchfunktion, niedrige Einstiegshürde.
 
 ## Zusammenfassung: Empfohlene Kombinationen
 
-| Profil | VCS-Plattform | Issue Tracker | Asset Management | SSG |
-|--------|--------------|--------------|-----------------|-----|
-| Minimale Abhängigkeiten, selbst-gehostet | Forgejo | Plane | DataGerry | MkDocs Material |
-| ITIL-orientiert, Service-Desk-nah | Forgejo | OTOBO | DataGerry | MkDocs Material |
-| Alles aus einer Hand | GitLab CE | OTOBO | DataGerry | GitLab Pages |
-| SaaS, kein Selbst-Hosting | GitHub | Plane (Cloud) | DataGerry | GitHub Pages |
-| Bewährt, ressourcenschonend | Forgejo | Redmine | DataGerry | MkDocs Material |
+| Profil | VCS-Plattform | Issue Tracker | Kanban | Asset Management | SSG |
+|--------|--------------|--------------|--------|-----------------|-----|
+| Minimale Abhängigkeiten, selbst-gehostet | Forgejo | Plane | Wekan | DataGerry | MkDocs Material |
+| ITIL-orientiert, Service-Desk-nah | Forgejo | OTOBO | Wekan | DataGerry | MkDocs Material |
+| Alles aus einer Hand | GitLab CE | OTOBO | Wekan | DataGerry | GitLab Pages |
+| SaaS, kein Selbst-Hosting | GitHub | Plane (Cloud) | Wekan (Cloud) | DataGerry | GitHub Pages |
+| Bewährt, ressourcenschonend | Forgejo | Redmine | Kanboard | DataGerry | MkDocs Material |
 
 Die Kombination **Forgejo + Plane + DataGerry + MkDocs** wird in den Szenarien als
 Referenz-Stack verwendet. Die Variante mit **OTOBO** statt Plane ist besonders geeignet

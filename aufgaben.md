@@ -16,6 +16,7 @@ bewertet.
 | **SSG** | Static Site Generator | Transformation von Markup zu statischen Webseiten |
 | **CI** | CI/CD-Pipeline | Automatisierte Builds und Deployments bei Git-Events |
 | **IT** | Issue Tracker | Tickets, Status-Workflows, Felder, Templates, Wiederholung |
+| **KB** | Kanban-Board | Visuelle Projektsteuerung, Swimlanes, Karten-Templates |
 | **AM** | Asset Management / CMDB | Inventar mit frei definierbaren Schemata, Verlinkung zu Risiken |
 | **KI** | KI-Assistent | Textentwürfe, Formulierungen, Konsistenzprüfung |
 
@@ -46,6 +47,28 @@ bewertet.
 | Risikoakzeptanz dokumentieren | IT | Tag `status:akzeptiert`, Kommentar mit Begründung und Genehmiger |
 | Risikoreporting | IT | Filteransichten nach Status-Tag, Risikowert, Fälligkeit |
 | Risikoregister publizieren | IT | Reporting über Filteransichten im Ticket-System |
+
+---
+
+### Projektsteuerung
+
+Kanban-Boards dienen der **Steuerung von ISMS-Projekten und Verbesserungsinitiativen** —
+nicht der operativen Aufgabenverwaltung. Der Unterschied:
+
+- **Issue Tracker**: Einzelne ISMS-Aufgaben mit Workflow, Nachweis und Wiederholung
+- **Kanban-Board**: Überblick über laufende Initiativen, Fortschritt von Maßnahmenpaketen,
+  Priorisierung im Team
+
+| Aufgabe | Tool-Klassen | Umsetzung |
+|---------|-------------|-----------|
+| ISMS-Einführungsprojekt steuern | KB | Board mit Phasen als Spalten, Meilensteine als Karten |
+| Maßnahmenpakete visualisieren | KB | Swimlanes je Risikoebene oder Verantwortlichem |
+| Verbesserungsinitiativen priorisieren | KB | Backlog-Spalte mit Template-Karten je Initiativtyp |
+| Teamüberblick in Reviews | KB | Boardansicht als Gesprächsgrundlage in Managementbewertung |
+
+**Templates** sind hier besonders wichtig: Wiederkehrende Initiativtypen (Gap-Analyse,
+Lieferantenbewertungsprojekt, Awareness-Kampagne) sollten als Karten-Templates vorliegen,
+damit Struktur und Checklisten nicht jedes Mal neu erstellt werden.
 
 ---
 
