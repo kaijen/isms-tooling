@@ -81,26 +81,33 @@ Risiken werden als Tickets modelliert, die einen definierten Lebenszyklus durchl
 identifiziert → bewertet → behandlung_geplant → in_behandlung → akzeptiert / geschlossen
 ```
 
-Jeder Statusübergang ist im Ticket-System protokolliert (wer, wann, mit welcher Begründung).
+Der Lebenszyklus wird **nicht über native Workflow-Engines** des Ticket-Systems abgebildet,
+sondern über Tags/Labels und Attribute. Das hat einen entscheidenden Vorteil: Die Lösung
+funktioniert in nahezu jedem Ticket-System ohne aufwändige Workflow-Konfiguration.
+
+Der Audit-Trail entsteht durch die Attribut-History des Tickets — jedes Ticket-System
+protokolliert, wer wann welchen Tag oder Feldwert geändert hat.
 
 **Attribute am Risiko-Ticket:**
 
-| Attribut | Zweck |
-|----------|-------|
-| Eintrittswahrscheinlichkeit | Bewertung |
-| Schadenshöhe | Bewertung |
-| Risikowert (berechnet) | Priorisierung, Reporting |
-| Asset-Referenz | Scope |
-| Verantwortlicher | Steuerung |
-| Fälligkeit Bewertung | Wiedervorlage |
+| Attribut | Typ | Zweck |
+|----------|-----|-------|
+| `status:identifiziert` / `status:bewertet` / … | Tag | Aktueller Zustand im Lebenszyklus |
+| Eintrittswahrscheinlichkeit | Feld (Zahl/Stufe) | Bewertung |
+| Schadenshöhe | Feld (Zahl/Stufe) | Bewertung |
+| Risikowert | Feld (berechnet oder manuell) | Priorisierung, Reporting |
+| Asset-Referenz | Feld / Verlinkung | Scope |
+| Verantwortlicher | Assignee | Steuerung |
+| Fälligkeit Neubewertung | Datum-Feld | Wiedervorlage |
 
 **Verknüpfung mit Behandlung**: Behandlungsmaßnahmen werden als eigene Tickets erfasst —
 gegebenenfalls in einem anderen Werkzeug — und mit dem Risiko-Ticket verknüpft. Risiko- und
 Behandlungs-Tracking sind logisch verbunden, aber werkzeugmäßig unabhängig. Das verhindert
 Vendor Lock-in und erlaubt, das jeweils geeignetste Werkzeug zu wählen.
 
-**Reporting**: Risikoberichte entstehen durch Filterung und Gruppierung nach Status, Risikowert
-oder Fälligkeit — ohne separates Reporting-Tool.
+**Reporting**: Risikoberichte entstehen durch Filterung nach Status-Tags, Risikowert oder
+Fälligkeit — ohne separates Reporting-Tool. KI kann auf Basis der Attribute prüfen, ob ein
+Statusübergang vollständig dokumentiert ist, bevor der Tag gesetzt wird.
 
 ---
 

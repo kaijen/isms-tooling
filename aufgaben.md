@@ -39,11 +39,11 @@ bewertet.
 | Aufgabe | Tool-Klassen | Umsetzung |
 |---------|-------------|-----------|
 | Risikoidentifikation | IT, KI | Risiko-Ticket anlegen, KI für Beschreibung und Kategorisierung |
-| Risikobewertung | IT | Benutzerdefinierte Felder: Wahrscheinlichkeit, Schadenshöhe, Risikowert |
-| Statusverfolgung | IT | Konfigurierter Workflow als endlicher Automat |
+| Risikobewertung | IT | Felder: Wahrscheinlichkeit, Schadenshöhe, Risikowert |
+| Statusverfolgung | IT | Status-Tags am Ticket (kein nativer Workflow nötig); History als Audit-Trail |
 | Risikobehandlung verknüpfen | IT | Verlinkung zu Behandlungs-Tickets (ggf. anderes Werkzeug) |
-| Risikoakzeptanz dokumentieren | IT | Statusübergang mit Begründung und Genehmiger |
-| Risikoreporting | IT | Filteransichten nach Status, Risikowert, Fälligkeit |
+| Risikoakzeptanz dokumentieren | IT | Tag `status:akzeptiert`, Kommentar mit Begründung und Genehmiger |
+| Risikoreporting | IT | Filteransichten nach Status-Tag, Risikowert, Fälligkeit |
 | Risikoregister publizieren | IT | Reporting über Filteransichten im Ticket-System; Export für externe Empfänger (Auditoren, Management) noch offen |
 
 ---
