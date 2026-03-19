@@ -174,7 +174,7 @@ def gen_incident(client, model, ctx, incident_type: str, severity: str):
 # CLI
 # ---------------------------------------------------------------------------
 
-DEFAULT_MODEL   = "anthropic/claude-3.5-haiku"
+DEFAULT_MODEL   = "anthropic/claude-haiku-4-5"
 DEFAULT_ORG     = str(Path(__file__).parent / "org.json")
 DEFAULT_POLICIES = [
     "Zugriffssteuerung",

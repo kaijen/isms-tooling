@@ -94,13 +94,15 @@ Alle Dateien landen unter `docker/demo/generate/output/`.
 
 | Modell | Qualität | Kosten | Empfehlung |
 |--------|----------|--------|------------|
-| `anthropic/claude-3.5-haiku` | Sehr gut | Gering | Standard |
-| `anthropic/claude-3.5-sonnet` | Exzellent | Mittel | Lange Dokumente |
-| `mistralai/mistral-7b-instruct` | Gut | Sehr gering | Schnelle Iteration |
-| `google/gemini-flash-1.5` | Gut | Sehr gering | Kostensparend |
+| `anthropic/claude-haiku-4-5` | Sehr gut | Gering | Standard |
+| `anthropic/claude-sonnet-4-6` | Exzellent | Mittel | Lange Dokumente, Auditberichte |
+| `anthropic/claude-opus-4-6` | Herausragend | Hoch | Höchste Qualität |
+| `google/gemini-2.0-flash` | Gut | Sehr gering | Kostensparend, schnell |
+| `meta-llama/llama-3.3-70b-instruct` | Gut | Sehr gering | Open-Weight, keine Datenweitergabe an Anbieter |
+| `mistralai/mistral-large` | Gut | Mittel | Europäischer Anbieter |
 
 ```bash
-python generate.py --model mistralai/mistral-7b-instruct risks --count 5
+python generate.py --model google/gemini-2.0-flash risks --count 5
 ```
 
 ---
