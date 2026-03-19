@@ -1,0 +1,55 @@
+networks:
+  proxy:
+    external: true
+  bookstack-internal:
+
+volumes:
+  bookstack-data:
+  bookstack-db:
+
+services:
+  bookstack:
+    image: lscr.io/linuxserver/bookstack:latest
+    container_name: bookstack
+    restart: unless-stopped
+    environment:
+      PUID: "1000"
+      PGID: "1000"
+      APP_URL: https://wiki.${DOMAIN}
+      APP_KEY: ${BOOKSTACK_APP_KEY}
+      DB_HOST: bookstack-db
+      DB_PORT: "3306"
+      DB_DATABASE: ${BOOKSTACK_DB_NAME}
+      DB_USERNAME: ${BOOKSTACK_DB_USER}
+      DB_PASSWORD: ${BOOKSTACK_DB_PASSWORD}
+    volumes:
+      - bookstack-data:/config
+    networks:
+      - proxy
+      - bookstack-internal
+    depends_on:
+      bookstack-db:
+        condition: service_healthy
+    labels:
+      - traefik.enable=true
+      - traefik.http.routers.bookstack.rule=Host(`wiki.${DOMAIN}`)
+      - traefik.http.services.bookstack.loadbalancer.server.port=80
+
+  bookstack-db:
+    image: mariadb:10.11
+    container_name: bookstack-db
+    restart: unless-stopped
+    environment:
+      MYSQL_DATABASE: ${BOOKSTACK_DB_NAME}
+      MYSQL_USER: ${BOOKSTACK_DB_USER}
+      MYSQL_PASSWORD: ${BOOKSTACK_DB_PASSWORD}
+      MYSQL_RANDOM_ROOT_PASSWORD: "true"
+    volumes:
+      - bookstack-db:/var/lib/mysql
+    networks:
+      - bookstack-internal
+    healthcheck:
+      test: ["CMD", "healthcheck.sh", "--connect", "--innodb_initialized"]
+      interval: 10s
+      timeout: 5s
+      retries: 10

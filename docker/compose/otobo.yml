@@ -1,0 +1,90 @@
+# OTOBO – Queue-basiertes Ticket-System (Szenario A)
+# Basiert auf dem offiziellen RotherOSS Docker-Setup, angepasst für Traefik.
+# Referenz: https://github.com/RotherOSS/otobo/tree/rel-11_0/scripts/docker
+
+networks:
+  proxy:
+    external: true
+  otobo-internal:
+
+volumes:
+  otobo-opt:
+  otobo-db:
+  otobo-elasticsearch:
+  otobo-redis:
+
+services:
+  otobo-web:
+    image: rotheross/otobo:rel-11_0
+    container_name: otobo-web
+    restart: unless-stopped
+    environment:
+      OTOBO_DB_ROOT_PASSWORD: ${OTOBO_DB_ROOT_PASSWORD}
+      OTOBO_RUNS_UNDER_DOCKER: "1"
+    volumes:
+      - otobo-opt:/opt/otobo
+    networks:
+      - proxy
+      - otobo-internal
+    depends_on:
+      otobo-db:
+        condition: service_healthy
+      otobo-redis:
+        condition: service_started
+    labels:
+      - traefik.enable=true
+      - traefik.http.routers.otobo.rule=Host(`tickets.${DOMAIN}`)
+      - traefik.http.services.otobo.loadbalancer.server.port=5000
+
+  otobo-daemon:
+    image: rotheross/otobo:rel-11_0
+    container_name: otobo-daemon
+    restart: unless-stopped
+    command: /opt/otobo/bin/docker/run_daemon.sh
+    environment:
+      OTOBO_DB_ROOT_PASSWORD: ${OTOBO_DB_ROOT_PASSWORD}
+      OTOBO_RUNS_UNDER_DOCKER: "1"
+    volumes:
+      - otobo-opt:/opt/otobo
+    networks:
+      - otobo-internal
+    depends_on:
+      - otobo-web
+
+  otobo-db:
+    image: mariadb:10.11
+    container_name: otobo-db
+    restart: unless-stopped
+    environment:
+      MYSQL_ROOT_PASSWORD: ${OTOBO_DB_ROOT_PASSWORD}
+      MYSQL_DATABASE: otobo
+    volumes:
+      - otobo-db:/var/lib/mysql
+    networks:
+      - otobo-internal
+    healthcheck:
+      test: ["CMD", "healthcheck.sh", "--connect", "--innodb_initialized"]
+      interval: 10s
+      timeout: 5s
+      retries: 10
+
+  otobo-elasticsearch:
+    image: rotheross/otobo-elasticsearch:rel-11_0
+    container_name: otobo-elasticsearch
+    restart: unless-stopped
+    environment:
+      discovery.type: single-node
+      ES_JAVA_OPTS: "-Xms512m -Xmx512m"
+    volumes:
+      - otobo-elasticsearch:/usr/share/elasticsearch/data
+    networks:
+      - otobo-internal
+
+  otobo-redis:
+    image: redis:7-alpine
+    container_name: otobo-redis
+    restart: unless-stopped
+    volumes:
+      - otobo-redis:/data
+    networks:
+      - otobo-internal

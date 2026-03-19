@@ -1,0 +1,47 @@
+# Szenario A – Greenfield, NIS2-betroffen
+# Dieses Overlay ergänzt szenarienspezifische Anpassungen:
+# - Ressourcenlimits für Produktivbetrieb
+# - OTOBO Elasticsearch-Speicher angepasst
+# - Gemeinsames Logging-Label für alle Services
+
+services:
+  traefik:
+    labels:
+      - traefik.http.middlewares.secure-headers.headers.stsSeconds=31536000
+      - traefik.http.middlewares.secure-headers.headers.stsIncludeSubdomains=true
+
+  forgejo:
+    deploy:
+      resources:
+        limits:
+          memory: 512m
+    labels:
+      - traefik.http.routers.forgejo.middlewares=secure-headers
+
+  otobo-web:
+    deploy:
+      resources:
+        limits:
+          memory: 1g
+    labels:
+      - traefik.http.routers.otobo.middlewares=secure-headers
+
+  otobo-elasticsearch:
+    environment:
+      ES_JAVA_OPTS: "-Xms256m -Xmx256m"
+
+  datagerry:
+    labels:
+      - traefik.http.routers.datagerry.middlewares=secure-headers
+
+  bookstack:
+    labels:
+      - traefik.http.routers.bookstack.middlewares=secure-headers
+
+  wekan:
+    labels:
+      - traefik.http.routers.wekan.middlewares=secure-headers
+
+  docs:
+    labels:
+      - traefik.http.routers.docs.middlewares=secure-headers

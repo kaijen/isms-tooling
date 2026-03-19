@@ -1,0 +1,23 @@
+# Statische Dokumentationssite (MkDocs-Output)
+# Build via Forgejo Actions, Ergebnis wird hier als Volume eingehängt.
+
+networks:
+  proxy:
+    external: true
+
+volumes:
+  docs-public:    # befüllt durch CI-Pipeline aus Forgejo Actions
+
+services:
+  docs:
+    image: nginx:alpine
+    container_name: docs
+    restart: unless-stopped
+    volumes:
+      - docs-public:/usr/share/nginx/html:ro
+    networks:
+      - proxy
+    labels:
+      - traefik.enable=true
+      - traefik.http.routers.docs.rule=Host(`docs.${DOMAIN}`)
+      - traefik.http.services.docs.loadbalancer.server.port=80

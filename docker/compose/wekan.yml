@@ -1,0 +1,37 @@
+networks:
+  proxy:
+    external: true
+  wekan-internal:
+
+volumes:
+  wekan-db:
+
+services:
+  wekan:
+    image: ghcr.io/wekan/wekan:latest
+    container_name: wekan
+    restart: unless-stopped
+    environment:
+      MONGO_URL: mongodb://wekan-db:27017/${WEKAN_DB_NAME}
+      ROOT_URL: ${WEKAN_ROOT_URL}
+      WITH_API: "true"
+      RICHER_CARD_COMMENT_EDITOR: "true"
+    networks:
+      - proxy
+      - wekan-internal
+    depends_on:
+      - wekan-db
+    labels:
+      - traefik.enable=true
+      - traefik.http.routers.wekan.rule=Host(`board.${DOMAIN}`)
+      - traefik.http.services.wekan.loadbalancer.server.port=8080
+
+  wekan-db:
+    image: mongo:7
+    container_name: wekan-db
+    restart: unless-stopped
+    command: mongod --oplogSize 128
+    volumes:
+      - wekan-db:/data/db
+    networks:
+      - wekan-internal

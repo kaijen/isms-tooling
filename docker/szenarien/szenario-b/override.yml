@@ -1,0 +1,42 @@
+# Szenario B – Supplier, KMU
+# Ressourcenlimits für kleinere Hardware (z.B. 4 GB RAM VPS)
+
+services:
+  traefik:
+    labels:
+      - traefik.http.middlewares.secure-headers.headers.stsSeconds=31536000
+      - traefik.http.middlewares.secure-headers.headers.stsIncludeSubdomains=true
+
+  forgejo:
+    deploy:
+      resources:
+        limits:
+          memory: 256m
+    labels:
+      - traefik.http.routers.forgejo.middlewares=secure-headers
+
+  plane-web:
+    deploy:
+      resources:
+        limits:
+          memory: 512m
+    labels:
+      - traefik.http.routers.plane.middlewares=secure-headers
+
+  plane-api:
+    deploy:
+      resources:
+        limits:
+          memory: 512m
+
+  datagerry:
+    deploy:
+      resources:
+        limits:
+          memory: 256m
+    labels:
+      - traefik.http.routers.datagerry.middlewares=secure-headers
+
+  docs:
+    labels:
+      - traefik.http.routers.docs.middlewares=secure-headers

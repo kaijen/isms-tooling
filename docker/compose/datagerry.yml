@@ -1,0 +1,40 @@
+networks:
+  proxy:
+    external: true
+  datagerry-internal:
+
+volumes:
+  datagerry-db:
+  datagerry-files:
+
+services:
+  datagerry:
+    image: becongmbh/datagerry:latest
+    container_name: datagerry
+    restart: unless-stopped
+    environment:
+      DATAGERRY_DATABASE_MONGODB_HOST: datagerry-db
+      DATAGERRY_DATABASE_MONGODB_PORT: "27017"
+      DATAGERRY_DATABASE_MONGODB_DATABASE: ${DATAGERRY_DB_NAME}
+    volumes:
+      - datagerry-files:/home/datagerry/files
+    networks:
+      - proxy
+      - datagerry-internal
+    depends_on:
+      - datagerry-db
+    labels:
+      - traefik.enable=true
+      - traefik.http.routers.datagerry.rule=Host(`assets.${DOMAIN}`)
+      - traefik.http.services.datagerry.loadbalancer.server.port=4000
+
+  datagerry-db:
+    image: mongo:7
+    container_name: datagerry-db
+    restart: unless-stopped
+    environment:
+      MONGO_INITDB_DATABASE: ${DATAGERRY_DB_NAME}
+    volumes:
+      - datagerry-db:/data/db
+    networks:
+      - datagerry-internal

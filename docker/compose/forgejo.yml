@@ -1,0 +1,57 @@
+networks:
+  proxy:
+    external: true
+  forgejo-internal:
+
+volumes:
+  forgejo-data:
+  forgejo-db:
+
+services:
+  forgejo:
+    image: codeberg.org/forgejo/forgejo:9
+    container_name: forgejo
+    restart: unless-stopped
+    environment:
+      USER_UID: "1000"
+      USER_GID: "1000"
+      FORGEJO__database__DB_TYPE: postgres
+      FORGEJO__database__HOST: forgejo-db:5432
+      FORGEJO__database__NAME: ${FORGEJO_DB_NAME}
+      FORGEJO__database__USER: ${FORGEJO_DB_USER}
+      FORGEJO__database__PASSWD: ${FORGEJO_DB_PASSWORD}
+      FORGEJO__security__SECRET_KEY: ${FORGEJO_SECRET_KEY}
+      FORGEJO__security__INTERNAL_TOKEN: ${FORGEJO_INTERNAL_TOKEN}
+      FORGEJO__server__DOMAIN: git.${DOMAIN}
+      FORGEJO__server__ROOT_URL: https://git.${DOMAIN}
+      FORGEJO__server__SSH_DOMAIN: git.${DOMAIN}
+    volumes:
+      - forgejo-data:/data
+    networks:
+      - proxy
+      - forgejo-internal
+    depends_on:
+      forgejo-db:
+        condition: service_healthy
+    labels:
+      - traefik.enable=true
+      - traefik.http.routers.forgejo.rule=Host(`git.${DOMAIN}`)
+      - traefik.http.services.forgejo.loadbalancer.server.port=3000
+
+  forgejo-db:
+    image: postgres:16-alpine
+    container_name: forgejo-db
+    restart: unless-stopped
+    environment:
+      POSTGRES_DB: ${FORGEJO_DB_NAME}
+      POSTGRES_USER: ${FORGEJO_DB_USER}
+      POSTGRES_PASSWORD: ${FORGEJO_DB_PASSWORD}
+    volumes:
+      - forgejo-db:/var/lib/postgresql/data
+    networks:
+      - forgejo-internal
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U ${FORGEJO_DB_USER}"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
