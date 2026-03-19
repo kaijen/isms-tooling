@@ -45,7 +45,7 @@ bewertet.
 | Risikobehandlung verknüpfen | IT | Verlinkung zu Behandlungs-Tickets (ggf. anderes Werkzeug) |
 | Risikoakzeptanz dokumentieren | IT | Tag `status:akzeptiert`, Kommentar mit Begründung und Genehmiger |
 | Risikoreporting | IT | Filteransichten nach Status-Tag, Risikowert, Fälligkeit |
-| Risikoregister publizieren | IT | Reporting über Filteransichten im Ticket-System; Export für externe Empfänger (Auditoren, Management) noch offen |
+| Risikoregister publizieren | IT | Reporting über Filteransichten im Ticket-System |
 
 ---
 
@@ -130,10 +130,3 @@ ist aber optional, nicht erzwungen.
 
 ---
 
-## Offene Punkte
-
-| Thema | Status |
-|-------|--------|
-| SSG-Zugriffssteuerung | Offen — zu klären welche Inhalte intern/extern sichtbar sein sollen |
-| Risikoregister-Export | Offen — Weg von Ticket-Filteransicht zu auditortauglichem Dokument |
-| Ticket-System-Konfiguration | Verschiedene Ansätze je Szenario zu beleuchten |

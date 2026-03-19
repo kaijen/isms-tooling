@@ -79,17 +79,6 @@ Open Source, selbst-hostbar.
   die Anforderungen einfach sind. Custom Fields und Recurring fehlen in der CE-Edition —
   für vollständiges ISMS-Tracking nicht empfehlenswert ohne EE-Lizenz.
 
-### Offener Punkt: Wiederkehrende Tickets
-
-Kein evaluierter OSS-Kandidat löst wiederkehrende Tickets vollständig und wartungsarm.
-Pragmatische Alternativen:
-
-| Ansatz | Aufwand | Abhängigkeit |
-|--------|---------|-------------|
-| Redmine Recurring Tasks Plugin | gering | Plugin-Aktualität |
-| Cron-Job via API (Plane, GitLab) | mittel | eigene Automatisierung |
-| Manuelle Erzeugung aus Template | hoch | Disziplin |
-
 ---
 
 ## Asset Management / CMDB

@@ -17,7 +17,13 @@
 ## Werkzeuge
 
 - [ ] **Wiederkehrende Tickets**: Kein OSS-Kandidat löst das vollständig — Ansatz je
-      Szenario konkretisieren (OTOBO Prozess-Engine vs. API-Cron vs. manuell)
+      Szenario konkretisieren. Bekannte Alternativen:
+      - OTOBO Prozess-Engine (nativ, kein Plugin)
+      - Redmine Recurring Tasks Plugin (abhängig von Plugin-Pflege)
+      - Cron-Job via API (Plane, GitLab) — eigene Automatisierung nötig
+      - Manuelle Erzeugung aus Template — Disziplinfrage
+- [ ] **Ticket-System-Konfiguration**: Verschiedene Ansätze je Szenario beleuchten —
+      Initialaufwand für Workflows, Custom Fields und Templates einplanen
 - [ ] **KI-Tool-Auswahl**: KI als Tool-Klasse benannt, aber nicht bewertet — Kandidaten
       (cloud-basiert vs. lokal/Ollama) und Datenschutzimplikationen für ISMS-Inhalte
 - [ ] **Integration zwischen Tools**: Wie viel API-Automatisierung ist pragmatisch?

@@ -214,7 +214,7 @@ Konkret bedeutet das:
 | Managementbewertung (9.3) | Recurring Ticket mit Tagesordnung und Ergebnisprotokoll |
 | Awareness (7.3) | Schulungs-Tickets mit Teilnahmenachweis |
 | Notfallvorsorge (8.1) | Git-Clones als dokumentiertes Backup-Konzept |
-| Zugriffssteuerung (A.5.15) | Queues/Projekte im Ticket-System je Zuständigkeitsbereich; SSG-Zugriffskonzept offen |
+| Zugriffssteuerung (A.5.15) | Queue-Hierarchie im Ticket-System je Risikoebene und Zuständigkeitsbereich |
 
 Der Ansatz funktioniert nur, wenn Konventionen eingehalten werden: Commit-Messages müssen
 aussagekräftig sein, Statusübergänge müssen begründet werden, Templates müssen gepflegt werden.
