@@ -1,0 +1,62 @@
+[
+  {
+    "type": "Informationsasset",
+    "name": "Kundendatenbank",
+    "verantwortlicher": "IT-Leitung",
+    "schutzbedarf_v": "Hoch",
+    "schutzbedarf_i": "Hoch",
+    "schutzbedarf_v2": "Hoch",
+    "standort": "Rechenzentrum Hauptstandort",
+    "beschreibung": "Zentrale Datenbank mit Kundenstamm- und Vertragsdaten"
+  },
+  {
+    "type": "Informationsasset",
+    "name": "ERP-System",
+    "verantwortlicher": "IT-Leitung",
+    "schutzbedarf_v": "Hoch",
+    "schutzbedarf_i": "Hoch",
+    "schutzbedarf_v2": "Hoch",
+    "standort": "Rechenzentrum Hauptstandort",
+    "beschreibung": "Zentrales ERP für Finanzen, Einkauf und Produktion"
+  },
+  {
+    "type": "Informationsasset",
+    "name": "Active Directory",
+    "verantwortlicher": "IT-Betrieb",
+    "schutzbedarf_v": "Hoch",
+    "schutzbedarf_i": "Hoch",
+    "schutzbedarf_v2": "Hoch",
+    "standort": "Rechenzentrum Hauptstandort",
+    "beschreibung": "Zentrales Verzeichnis für Benutzer- und Computerverwaltung"
+  },
+  {
+    "type": "Prozess",
+    "name": "Incident Response",
+    "verantwortlicher": "ISB",
+    "schutzbedarf_v": "Mittel",
+    "schutzbedarf_i": "Hoch",
+    "schutzbedarf_v2": "Hoch",
+    "standort": "-",
+    "beschreibung": "Prozess zur Erkennung, Meldung und Behandlung von Sicherheitsvorfällen"
+  },
+  {
+    "type": "Prozess",
+    "name": "Patch-Management",
+    "verantwortlicher": "IT-Betrieb",
+    "schutzbedarf_v": "Mittel",
+    "schutzbedarf_i": "Hoch",
+    "schutzbedarf_v2": "Hoch",
+    "standort": "-",
+    "beschreibung": "Regelmäßige Aktualisierung von Betriebssystemen und Anwendungen"
+  },
+  {
+    "type": "Dienstleister",
+    "name": "Cloud-Provider A",
+    "verantwortlicher": "IT-Leitung",
+    "schutzbedarf_v": "Hoch",
+    "schutzbedarf_i": "Mittel",
+    "schutzbedarf_v2": "Hoch",
+    "standort": "EU",
+    "beschreibung": "IaaS-Anbieter für Backup-Infrastruktur, AVV vorhanden"
+  }
+]

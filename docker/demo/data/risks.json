@@ -1,0 +1,78 @@
+[
+  {
+    "title": "Ransomware-Angriff auf kritische Systeme",
+    "description": "Verschlüsselung produktiver Systeme durch Ransomware führt zu Betriebsausfall und Datenverlust.",
+    "queue": "Risiken::Technisch",
+    "wahrscheinlichkeit": "3-Wahrscheinlich",
+    "schadenshoehe": "4-Kritisch",
+    "risikowert": "12",
+    "bezugsobjekt_typ": "Asset",
+    "bezugsobjekt_id": "ERP-System",
+    "status_tag": "status:bewertet",
+    "massnahmen": [
+      "Offline-Backup täglich mit 3-2-1-Regel",
+      "EDR-Lösung auf allen Endpunkten",
+      "Netzwerksegmentierung"
+    ]
+  },
+  {
+    "title": "Schlüsselpersonenabhängigkeit im IT-Betrieb",
+    "description": "Kritisches Systemwissen ist auf eine Person konzentriert. Ausfall führt zu nicht behebbaren Betriebsstörungen.",
+    "queue": "Risiken::Operativ",
+    "wahrscheinlichkeit": "2-Möglich",
+    "schadenshoehe": "3-Hoch",
+    "risikowert": "6",
+    "bezugsobjekt_typ": "Prozess",
+    "bezugsobjekt_id": "IT-Betrieb",
+    "status_tag": "status:behandlung_geplant",
+    "massnahmen": [
+      "Wissenstransfer-Dokumentation",
+      "Stellvertreterregelung definieren"
+    ]
+  },
+  {
+    "title": "Unzureichende Lieferantenkontrolle",
+    "description": "Kritische Dienstleister werden nicht regelmäßig auf Sicherheitsanforderungen geprüft. Risiko von Supply-Chain-Angriffen.",
+    "queue": "Risiken::Operativ",
+    "wahrscheinlichkeit": "2-Möglich",
+    "schadenshoehe": "3-Hoch",
+    "risikowert": "6",
+    "bezugsobjekt_typ": "Externer Akteur",
+    "bezugsobjekt_id": "Cloud-Provider",
+    "status_tag": "status:identifiziert",
+    "massnahmen": [
+      "Jährliche Lieferantenbewertung einführen",
+      "Sicherheitsklauseln in Verträge aufnehmen"
+    ]
+  },
+  {
+    "title": "Datenverlust durch fehlende Backup-Validierung",
+    "description": "Backups werden erstellt aber nicht regelmäßig auf Wiederherstellbarkeit geprüft.",
+    "queue": "Risiken::Technisch",
+    "wahrscheinlichkeit": "3-Wahrscheinlich",
+    "schadenshoehe": "3-Hoch",
+    "risikowert": "9",
+    "bezugsobjekt_typ": "Prozess",
+    "bezugsobjekt_id": "Backup-Management",
+    "status_tag": "status:behandlung_geplant",
+    "massnahmen": [
+      "Monatlicher Restore-Test etablieren",
+      "Testprotokoll im ISMS dokumentieren"
+    ]
+  },
+  {
+    "title": "Regulatorisches Risiko NIS2-Meldepflicht",
+    "description": "Fehlende Prozesse für die 24h-Erstmeldung bei erheblichen Sicherheitsvorfällen führen zu Bußgeldrisiken.",
+    "queue": "Risiken::Strategisch",
+    "wahrscheinlichkeit": "2-Möglich",
+    "schadenshoehe": "3-Hoch",
+    "risikowert": "6",
+    "bezugsobjekt_typ": "Regulatorisch",
+    "bezugsobjekt_id": "NIS2 Art. 23",
+    "status_tag": "status:behandlung_geplant",
+    "massnahmen": [
+      "Incident-Response-Prozess mit Meldefristen dokumentieren",
+      "Verantwortlichen für NIS2-Meldungen benennen"
+    ]
+  }
+]
