@@ -1,0 +1,24 @@
+title: "ISMS mit einfachen Mitteln"
+description: "Konzept zur Umsetzung eines ISMS mit Open-Source-Werkzeugen"
+theme: minima
+
+# GitHub Pages
+baseurl: "/isms-tooling"
+url: "https://kaijen.github.io"
+
+# Navigation
+header_pages:
+  - konzept.md
+  - szenarien.md
+
+# Markdown
+markdown: kramdown
+kramdown:
+  input: GFM
+  hard_wrap: false
+
+# Exclude from build
+exclude:
+  - README.md
+  - Gemfile
+  - Gemfile.lock
