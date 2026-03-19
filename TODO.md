@@ -4,8 +4,6 @@
 
 - [ ] **Risikoebenen / Queue-Struktur**: Queue-Hierarchie (Strategisch / Operativ / Technisch)
       weiter ausarbeiten — Eskalationspfade, Übergabeprozesse zwischen Ebenen, Berichtslinien
-- [ ] **SSG-Zugriffssteuerung**: Welche Inhalte intern/extern sichtbar? Authentifizierung
-      vor statischen Seiten (z.B. nur im VPN erreichbar vs. öffentlich)?
 - [ ] **Risikoregister-Export**: Weg von Ticket-Filteransicht zu auditortauglichem Dokument
 - [ ] **Meldepflichten NIS2**: Fristen (24h Erstmeldung, 72h Folgemeldung) als Ticket-Workflow
       abbilden — Statusübergänge, Eskalation, Nachweisführung

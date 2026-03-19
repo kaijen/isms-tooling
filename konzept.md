@@ -188,10 +188,55 @@ ISMS-Assets umfassen nicht nur IT-Infrastruktur, sondern auch Datensätze, Proze
 Dienstleister und Räumlichkeiten — eine starre CMDB genügt nicht.
 
 ### Static Site Generator
+
 - Markdown-kompatibel
 - CI/CD-Integration (GitHub Actions, Gitea Actions)
 - Durchsuchbare Ausgabe
 - Niedrige Einstiegshürde für Inhaltsredaktion
+
+#### Zugriffssteuerung
+
+SSGs produzieren statische Dateien — Zugriffskontrolle muss davor oder drumherum realisiert
+werden. Es gibt drei Ebenen mit unterschiedlichem Aufwand und unterschiedlicher Granularität:
+
+**Ebene 1 — Netzwerk**: Die statische Site ist ausschließlich im internen Netz oder per VPN
+erreichbar. Keine Anwendungsauthentifizierung nötig. Für viele ISMS-Setups ausreichend —
+Auditoren erhalten temporären VPN-Zugang oder einen dedizierten Export. Grenze: kein
+granulares Zugriffskonzept, keine Benutzeridentität im Audit-Trail.
+
+**Ebene 2 — Reverse Proxy mit Forward Auth**: Ein Proxy (Caddy, nginx) sitzt vor dem
+statischen Content und delegiert Authentifizierung an einen externen Dienst:
+
+```
+Browser → Proxy (Caddy/nginx) → Forward Auth (Authelia / Keycloak)
+                               ↓ (bei Erfolg)
+                           Statische Dateien
+```
+
+**Authelia** ist die schlanke Wahl: OIDC-Provider, 2FA, gruppenbasierte Zugriffssteuerung,
+geringer Betriebsaufwand. **Keycloak** lohnt sich nur wenn die Organisation es ohnehin als
+zentralen Identity Provider betreibt — als reine SSG-Absicherung ist es Overengineering.
+
+**Ebene 3 — Bereichsweise Zugriffssteuerung**: Unterschiedliche Inhaltsbereiche erhalten
+unterschiedliche Zugriffsrechte. Das spiegelt die Queue-Struktur des Risikomanagements wider:
+
+| Bereich | Inhalt | Zugang |
+|---------|--------|--------|
+| Öffentlich | Allgemeine Richtlinien, Awareness-Material | Kein Login |
+| Intern | Verfahren, Audit-Nachweise, Maßnahmenpläne | Login (alle Mitarbeitenden) |
+| Vertraulich | Strategisches Risikoregister, Managementbewertung | Login + Gruppe Management |
+
+Technisch umsetzbar über separate Sites (einfache, klare Trennung) oder path-basiertes
+Routing mit gruppenabhängiger Forward-Auth (ein Deployment, höhere Komplexität).
+
+**Pragmatische Empfehlung je Ausgangslage:**
+
+| Ausgangslage | Empfehlung |
+|-------------|------------|
+| KMU, Supplier, kein zentrales IAM | VPN-Zugang, kein Anwendungs-Login |
+| Keycloak bereits im Betrieb | Keycloak + oauth2-proxy |
+| Kein zentrales IAM, Granularität gewünscht | Authelia als OIDC-Provider |
+| Forgejo oder GitLab als Plattform | Eingebaute Pages-Zugriffssteuerung nutzen |
 
 ---
 
