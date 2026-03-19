@@ -238,6 +238,33 @@ Routing mit gruppenabhängiger Forward-Auth (ein Deployment, höhere Komplexitä
 | Kein zentrales IAM, Granularität gewünscht | Authelia als OIDC-Provider |
 | Forgejo oder GitLab als Plattform | Eingebaute Pages-Zugriffssteuerung nutzen |
 
+#### Ausblick: Weitere Vertraulichkeitsgruppen
+
+Das Drei-Ebenen-Modell (Öffentlich / Intern / Vertraulich) deckt den häufigsten Fall ab.
+In der Praxis entstehen jedoch zusätzliche Gruppen mit eigenem Schutzbedarf:
+
+- **Abteilungsspezifische Inhalte** (z.B. HR-Sicherheitsanweisungen, Finanzprozesse)
+- **Lieferanten-Portal** — ausgewählte Richtlinien für externe Partner sichtbar,
+  interne Verfahren nicht
+- **Auditoren-Zugang** — lesender Zugriff auf definierten Scope, zeitlich begrenzt
+- **Projektspezifische Arbeitsbereiche** — nur beteiligte Teams sehen laufende
+  Maßnahmendetails
+
+Technisch ist das über **OIDC-Gruppen-Claims** lösbar: Der Identity Provider (Authelia,
+Keycloak) weist Nutzern Gruppen zu; der Proxy mapped Pfadpräfixe auf Gruppenanforderungen.
+Jede neue Vertraulichkeitsgruppe ist dann eine Proxy-Konfigurationszeile, kein neues
+Deployment.
+
+Die Grenze dieser Lösung liegt in der Komplexität der Inhaltspflege: Wer darf was sehen,
+muss sowohl im Proxy als auch in der Repository-Struktur konsistent gehalten werden.
+Ab einer gewissen Anzahl an Gruppen kippt das Verhältnis — dann ist eine separate Site
+je Zielgruppe (Lieferanten-Portal als eigenes Repo und Deployment) einfacher zu betreiben
+als ein hochgranulares path-basiertes Routing.
+
+**Faustregel**: Bis drei Vertraulichkeitsgruppen — ein Deployment mit path-basiertem
+Routing. Ab vier Gruppen oder wenn externe Zielgruppen (Lieferanten, Auditoren) beteiligt
+sind — separate Sites mit eigenem Deployment und eigenem Zugriffskonzept.
+
 ---
 
 ## Zertifizierungsreife als Gestaltungsprinzip
