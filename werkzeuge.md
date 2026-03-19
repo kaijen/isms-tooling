@@ -95,7 +95,7 @@ selbst-hostbar. Kanban-Boards ergänzen den Issue Tracker — sie ersetzen ihn n
 | Labels / Tags | ✓ | ✓ | ✓ |
 | Zugriffssteuerung (Board-Ebene) | ✓ | ✓ | ✓ |
 | Selbst-hostbar | ✓ | ✓ | ✓ |
-| Open Source | ✓ (MIT) | ✓ (MIT) | ~ (Fair-Code, kommerziell lizenzpflichtig) |
+| Open Source | ✓ (MIT) | ✓ (MIT) | ~ (Fair-Code, internes Hosting kostenfrei) |
 | Ressourcenbedarf | mittel | gering | gering |
 | Moderne UI | ~ | ✗ | ✓ |
 
@@ -107,10 +107,12 @@ selbst-hostbar. Kanban-Boards ergänzen den Issue Tracker — sie ersetzen ihn n
 - **Kanboard**: Sehr leichtgewichtig, minimale Infrastruktur. Checklisten und Swimlanes
   vorhanden, Templates rudimentär. Gut für kleine Teams mit einfachen Anforderungen.
 - **Planka**: Modernste UI, v2.0 bringt Custom Fields, mehrere Task-Listen pro Karte und
-  OIDC-SSO. Zwei Schwachstellen für ISMS-Zwecke: Karten-Templates fehlen weiterhin (offenes
-  Issue #1397, kein Roadmap-Commitment, Stand März 2026) — und das Lizenzmodell ist seit v2.0
-  Fair-Code statt AGPL, d.h. für kommerzielle Nutzung ist eine Pro-Lizenz erforderlich.
-  Kein geeigneter Kandidat wenn OSS-Anforderung und Templates beide gelten.
+  OIDC-SSO. Lizenz: Fair-Code (PLANKA Community License v1.1) — internes Selbst-Hosting für
+  die eigene Organisation ist explizit kostenfrei erlaubt; eine kommerzielle Lizenz wird nur
+  fällig wenn Planka als Service für externe Dritte betrieben wird. Für ISMS-Eigennutzung
+  damit kein Lizenzproblem. Verbleibende Schwachstelle: Karten-Templates fehlen weiterhin
+  (offenes Issue #1397, kein Roadmap-Commitment, Stand März 2026) — damit für Template-
+  abhängige Workflows kein geeigneter Kandidat.
 
 ---
 
