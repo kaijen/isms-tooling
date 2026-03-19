@@ -100,6 +100,24 @@ protokolliert, wer wann welchen Tag oder Feldwert geändert hat.
 | Verantwortlicher | Assignee | Steuerung |
 | Fälligkeit Neubewertung | Datum-Feld | Wiedervorlage |
 
+**Bezugsobjekt statt Pflicht-Asset**: ISO 27001:2022 fordert keine asset-zentrierte
+Risikobeurteilung. Risiken mit erzwungener Asset-Zuordnung ("das Asset ist der Prozess X")
+erzeugen Overhead ohne Erkenntnisgewinn. Das Risiko-Ticket enthält stattdessen ein optionales
+Feld **Bezugsobjekt** mit flexiblem Typ:
+
+| Typ | Beispiele |
+|-----|-----------|
+| Asset | Server, Anwendung, Datensatz (Referenz auf CMDB) |
+| Prozess | Patch-Management, Onboarding, Incident Response |
+| Organisationseinheit | IT-Betrieb, Einkauf, Geschäftsführung |
+| Externer Akteur | Schlüssellieferant, Cloud-Provider, Auftraggeber |
+| Regulatorisch | NIS2-Meldepflicht, DSGVO Art. 32, Vertragsklausel |
+| — | Organisationales Risiko ohne spezifischen Anker |
+
+Ein leeres Bezugsobjekt ist eine bewusste, dokumentierte Entscheidung — keine Lücke.
+Asset-referenzierte Risiken profitieren von der Verlinkung zur CMDB; organisationale Risiken
+verlieren nichts dadurch, dass sie keinen Asset-Anker haben.
+
 **Verknüpfung mit Behandlung**: Behandlungsmaßnahmen werden als eigene Tickets erfasst —
 gegebenenfalls in einem anderen Werkzeug — und mit dem Risiko-Ticket verknüpft. Risiko- und
 Behandlungs-Tracking sind logisch verbunden, aber werkzeugmäßig unabhängig. Das verhindert

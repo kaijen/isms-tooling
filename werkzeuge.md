@@ -130,11 +130,14 @@ Dienstleister und Räume — das Schema muss frei definierbar sein.
 
 ### Verbindung Asset Management → Risikomanagement
 
-Die Verknüpfung zwischen CMDB und Issue Tracker ist konzeptuell zentral, aber technisch
-oft manuell: Die Asset-ID aus dem AM-System wird als Referenzfeld im Risiko-Ticket geführt.
-Vollautomatische Synchronisation ist möglich (API-zu-API), aber in pragmatischen Setups
-nicht zwingend erforderlich — eine konsistente ID-Konvention und Prozessdisziplin reichen
-für Auditierbarkeit aus.
+Risiko-Tickets verwenden ein optionales Feld **Bezugsobjekt** mit Typ-Auswahl (Asset,
+Prozess, Organisationseinheit, Externer Akteur, Regulatorisch, keines). Nur Asset-Referenzen
+zeigen auf die CMDB — andere Typen werden freitextlich oder als interne Verlinkung geführt.
+
+Die technische Verknüpfung ist manuell: Die Asset-ID aus dem AM-System wird als Referenzfeld
+im Risiko-Ticket eingetragen. Vollautomatische Synchronisation ist möglich (API-zu-API), aber
+in pragmatischen Setups nicht zwingend — eine konsistente ID-Konvention reicht für
+Auditierbarkeit aus.
 
 ---
 

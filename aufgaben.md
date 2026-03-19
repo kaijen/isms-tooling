@@ -99,13 +99,23 @@ bewertet.
 | Asset-Inventar aufbauen | AM | Objekte je Asset-Typ mit frei definierbarem Schema |
 | Asset-Typen definieren | AM | Schemata für Server, Anwendungen, Datensätze, Prozesse, Standorte |
 | Eigentümer & Klassifikation | AM | Felder: Verantwortlicher, Schutzbedarf (Vertraulichkeit, Integrität, Verfügbarkeit) |
-| Assets mit Risiken verknüpfen | AM, IT | Asset-Referenz im Risiko-Ticket; Verlinkung über ID oder API |
+| Assets mit Risiken verknüpfen | AM, IT | Asset-ID als optionales Bezugsobjekt im Risiko-Ticket |
 | Asset-Inventar aktuell halten | AM, IT | Änderungsticket bei Lifecycle-Ereignissen (Inbetriebnahme, Außerbetriebnahme) |
 | Asset-Inventar publizieren | AM | Filteransicht oder Export für Auditoren |
 
-**Besonderheit**: Das Asset-Inventar ist die Grundlage der Risikobeurteilung — Risiken ohne
-Asset-Referenz sind nicht vollständig. Die Verknüpfung AM → IT muss im Prozess verankert
-sein: Kein Risiko-Ticket ohne zugeordnetes Asset.
+**Bezugsobjekt statt Pflicht-Asset**: Nicht jedes Risiko lässt sich sinnvoll mit einem
+Asset verknüpfen. Schlüsselpersonenabhängigkeit, mangelndes Sicherheitsbewusstsein oder
+regulatorische Risiken haben keinen natürlichen Asset-Anker — eine erzwungene Zuordnung
+("das Asset ist der Prozess") erzeugt Overhead ohne Erkenntnisgewinn.
+
+Das Risiko-Ticket verwendet daher ein optionales Feld **Bezugsobjekt** mit Typ-Auswahl:
+Asset (CMDB-Referenz), Prozess, Organisationseinheit, Externer Akteur, Regulatorisch oder
+keines. Ein leeres Feld ist eine bewusste Entscheidung, keine Lücke — und wird als solche
+im Ticket dokumentiert.
+
+Das Asset-Inventar bleibt trotzdem zentral: Es ist die Grundlage für asset-bezogene
+Risikobeurteilungen und liefert den Kontext für Schutzbedarfsanalysen. Die Verknüpfung
+ist aber optional, nicht erzwungen.
 
 ---
 
