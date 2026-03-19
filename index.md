@@ -9,4 +9,5 @@ mit Open-Source-Werkzeugen pragmatisch umsetzen können — ohne große Budgets,
 ## Inhalte
 
 - [Konzept & Anforderungen](konzept) — Warum welche Werkzeuge, welche Thesen
+- [Aufgaben & Tool-Klassen](aufgaben) — ISMS-Prozesse generisch beschrieben
 - [Szenarien](szenarien) — Konkrete Werkzeugkombinationen für verschiedene Ausgangssituationen

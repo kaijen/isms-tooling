@@ -9,6 +9,7 @@ url: "https://kaijen.github.io"
 # Navigation
 header_pages:
   - konzept.md
+  - aufgaben.md
   - szenarien.md
 
 # Markdown
