@@ -5,8 +5,9 @@
 - [ ] **Risikoebenen / Queue-Struktur**: Queue-Hierarchie (Strategisch / Operativ / Technisch)
       weiter ausarbeiten — Eskalationspfade, Übergabeprozesse zwischen Ebenen, Berichtslinien
 - [ ] **Risikoregister-Export**: Weg von Ticket-Filteransicht zu auditortauglichem Dokument
-- [ ] **Meldepflichten NIS2**: Fristen (24h Erstmeldung, 72h Folgemeldung) als Ticket-Workflow
-      abbilden — Statusübergänge, Eskalation, Nachweisführung
+- [x] **Meldepflichten NIS2**: Queue `Meldepflichten`, States und Dynamic Fields
+      in `setup-otobo.sh` — Statusübergänge: erkannt → Erst-/Folge-/Abschlussmeldung
+      → abgeschlossen. Seed-Ticket fehlt noch (seed-otobo.sh).
 - [ ] **Metriken / ISMS-Kennzahlen**: Welche KPIs lassen sich aus Ticket-Daten ableiten?
       (offene Risiken je Ebene, Behandlungsquote, Audit-Findings, Schulungsquote)
 - [ ] **Backup Ticket-System**: Git-Clones sichern Dokumentation — was sichert die
@@ -26,8 +27,8 @@
       (cloud-basiert vs. lokal/Ollama) und Datenschutzimplikationen für ISMS-Inhalte
 - [ ] **Integration zwischen Tools**: Wie viel API-Automatisierung ist pragmatisch?
       DataGerry ↔ Issue Tracker, VCS ↔ CI ↔ SSG — Mindestintegration vs. Vollautomatisierung
-- [ ] **Starter-Templates**: Richtlinien- und Verfahrensvorlagen als Repository-Inhalt
-      bereitstellen — Umfang und Normkonformität klären
+- [x] **Starter-Templates**: 9 Richtlinien in `docker/demo/data/policies/`,
+      werden via `seed-forgejo.sh` in `isms/isms-policies` eingecheckt.
 
 ## Szenarien
 
@@ -35,5 +36,5 @@
 - [ ] Szenario B ausarbeiten (Supplier, KMU)
 - [ ] Szenario C ausarbeiten (Modernisierung von Legacy)
 - [ ] Transition Guide für Szenario C (Word/SharePoint → git-basiert)
-- [ ] Zertifizierungsbegleitung: Welche Artefakte braucht der Auditor konkret —
-      Checkliste je Szenario
+- [x] Zertifizierungsbegleitung: `audit-checkliste.md` mit Stage-1/Stage-2-Nachweisen,
+      häufigen NCs und Artefakt-Mapping je ISMS-Tool.

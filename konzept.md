@@ -282,6 +282,7 @@ Konkret bedeutet das:
 | Freigabeprozess | Pull Request mit Review und Merge durch Berechtigten |
 | Risikobeurteilung (6.1) | Risiko-Tickets mit Attributen und Statusverlauf |
 | Risikobehandlung (6.1.3) | Verknüpfte Behandlungs-Tickets, Statusübergänge |
+| Erklärung zur Anwendbarkeit (6.1.3d) | `soa.yml` in Git — siehe unten |
 | Interne Audits (9.2) | Audit-Tickets mit Checklisten, Befunden, Abschluss |
 | Managementbewertung (9.3) | Recurring Ticket mit Tagesordnung und Ergebnisprotokoll |
 | Awareness (7.3) | Schulungs-Tickets mit Teilnahmenachweis |
@@ -292,6 +293,86 @@ Der Ansatz funktioniert nur, wenn Konventionen eingehalten werden: Commit-Messag
 aussagekräftig sein, Statusübergänge müssen begründet werden, Templates müssen gepflegt werden.
 Diese Disziplin ist keine Schwäche des Ansatzes — sie entspricht genau dem, was ISO 27001 als
 gelebtes Managementsystem fordert.
+
+### Statement of Applicability als Code
+
+Die Erklärung zur Anwendbarkeit (SoA) ist das zentrale Pflichtdokument der Zertifizierung:
+Sie belegt für alle 93 Controls des Annex A, ob sie anwendbar sind und warum — und wenn ja,
+wie sie umgesetzt sind. In der Praxis wird die SoA häufig als Excel-Tabelle gepflegt, die
+weder versioniert noch freigabegesichert ist und deren Änderungshistorie sich nicht
+rekonstruieren lässt. Das ist ein vermeidbares Audit-Problem.
+
+**Der Ansatz: `soa.yml` im Git-Repository**
+
+Die SoA wird als strukturierte YAML-Datei im `isms-policies`-Repository gepflegt:
+
+```yaml
+controls:
+  - id: "A.5.15"
+    title: "Zugangsteuerung"
+    applicable: true
+    justification: "Need-to-know-Prinzip ist zentrales Sicherheitsprinzip"
+    status: "in-umsetzung"       # geplant | in-umsetzung | umgesetzt
+    measures: "RBAC via AD; Zugangsteuerungsrichtlinie v1.2"
+    evidence: "richtlinien/zugriffssteuerung.md"
+    owner: "IT-Leitung"
+
+  - id: "A.8.25"
+    title: "Sicherheit in der Entwicklung"
+    applicable: false
+    justification: "Keine eigene Softwareentwicklung im Scope"
+```
+
+Dieser Ansatz liefert ohne Zusatzaufwand das, was ein Auditor erwartet:
+
+| Auditor-Anforderung | Wie erfüllt |
+|---------------------|------------|
+| Alle 93 Controls dokumentiert | Vollständige YAML-Datei mit Pflichtfeldern |
+| Begründung für Nicht-Anwendbarkeit | `justification`-Feld, erzwungen durch Schema |
+| Umsetzungsstand je Control | `status`-Feld mit definierten Werten |
+| Verweis auf Nachweisdokument | `evidence`-Feld mit Pfad im Repository |
+| Änderungshistorie | Git-Log zeigt wer wann welches Control geändert hat |
+| Freigabeprozess | Pull Request mit Review — kein Merge ohne Vier-Augen |
+| Aktueller Stand jederzeit abrufbar | CI/CD publiziert lesbare Version automatisch |
+
+**Vom YAML zur publizierten SoA — der CI-Workflow**
+
+Ein Forgejo-Actions-Workflow konvertiert `soa.yml` bei jedem Merge in eine
+MkDocs-Seite und veröffentlicht sie:
+
+```
+soa.yml (isms-policies)
+   │  Push auf main
+   ▼
+Forgejo Actions: soa2md.py
+   │  erzeugt docs/soa.md mit Tabellen und Statistik
+   ▼
+mkdocs build
+   │
+   ▼
+docs.<domain>/soa/    ← lesbar für Auditoren und alle Mitarbeitenden
+```
+
+Der Konverter erzeugt aus dem YAML automatisch:
+- Eine vollständige Tabelle aller 93 Controls mit Status
+- Separate Tabellen je Kategorie (A.5 / A.6 / A.7 / A.8)
+- Eine Statistik: *Anwendbar: 89 | Umgesetzt: 34 | In Umsetzung: 41 | Geplant: 14*
+- Eine separate Liste aller nicht anwendbaren Controls mit Begründung
+
+**Was ein Git-Diff über die SoA aussagt**
+
+Wenn ein Control von `geplant` auf `umgesetzt` wechselt, ist das im Diff sofort sichtbar:
+
+```diff
+-    status: "geplant"
++    status: "umgesetzt"
++    measures: "Backup-Lösung mit 3-2-1-Regel eingerichtet, Restore-Test 2025-03-15"
++    evidence: "richtlinien/backup-und-wiederherstellung.md"
+```
+
+Der Merge-Zeitstempel und der Reviewer sind im Git-Log dokumentiert.
+Ein Auditor kann die gesamte SoA-Geschichte mit einem einzigen Befehl rekonstruieren —
+kein Excel, kein SharePoint, keine E-Mail-Kette.
 
 ### KI-Unterstützung als Disziplin-Verstärker
 

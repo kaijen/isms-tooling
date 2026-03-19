@@ -1,0 +1,1182 @@
+# Statement of Applicability (SoA) — ISO 27001:2022 Annex A
+#
+# Single Source of Truth für alle 93 Controls.
+# Dieses Dokument wird via CI/CD in die ISMS-Dokumentationssite publiziert.
+#
+# Felder je Control:
+#   applicable:    true | false
+#   justification: Begründung der An- oder Nichtanwendbarkeit
+#   status:        geplant | in-umsetzung | umgesetzt  (nur wenn applicable: true)
+#   measures:      Kurzbeschreibung der umgesetzten oder geplanten Maßnahme
+#   evidence:      Verweis auf Nachweisdokument (Pfad im Repo oder URL)
+#   owner:         Verantwortliche Rolle
+#
+# Status-Workflow:
+#   geplant → in-umsetzung → umgesetzt
+#   Jede Änderung erfordert einen Pull Request (4-Augen-Prinzip).
+#   Die Git-History belegt wann ein Control auf welchen Status gesetzt wurde.
+
+meta:
+  version:       "1.0"
+  status:        "Entwurf"
+  effective_date: ""
+  next_review:   "2026-01-01"
+  owner:         "Informationssicherheitsbeauftragter"
+  approved_by:   ""
+  approved_date: ""
+
+controls:
+
+  # ── A.5 Organisatorische Maßnahmen (37 Controls) ────────────────────────
+
+  - id: "A.5.1"
+    title: "Informationssicherheitsleitlinien"
+    category: "Organisatorische Maßnahmen"
+    applicable: true
+    justification: "Grundlegende Anforderung des ISMS"
+    status: "umgesetzt"
+    measures: "IS-Leitlinie v1.0 durch Geschäftsführung unterzeichnet und publiziert"
+    evidence:
+      - type: doc
+        ref:   "richtlinien/informationssicherheitsrichtlinie.md"
+        label: "Informationssicherheitsleitlinie"
+    owner: "ISB"
+
+  - id: "A.5.2"
+    title: "Rollen und Verantwortlichkeiten für Informationssicherheit"
+    category: "Organisatorische Maßnahmen"
+    applicable: true
+    justification: "Klare Verantwortlichkeiten sind Voraussetzung für ein funktionierendes ISMS"
+    status: "umgesetzt"
+    measures: "RACI-Matrix, ISB formal benannt, Rollen in IS-Leitlinie dokumentiert"
+    evidence:
+      - type: doc
+        ref:   "richtlinien/informationssicherheitsrichtlinie.md"
+        label: "Informationssicherheitsleitlinie"
+    owner: "Geschäftsführung"
+
+  - id: "A.5.3"
+    title: "Aufgabentrennung"
+    category: "Organisatorische Maßnahmen"
+    applicable: true
+    justification: "Verhindert Interessenkonflikte und Missbrauch"
+    status: "in-umsetzung"
+    measures: "Funktionstrennung in kritischen Prozessen (Buchhaltung, Admin-Rechte); vollständige Umsetzung für alle Systeme ausstehend"
+    evidence:
+      - type: ticket
+        ref:   "Risiken::Operativ"
+        label: "Risiken aus Rollenkonflikten (OTOBO)"
+    owner: "IT-Leitung"
+
+  - id: "A.5.4"
+    title: "Verantwortlichkeit des Managements"
+    category: "Organisatorische Maßnahmen"
+    applicable: true
+    justification: "Management-Commitment ist Grundlage des ISMS"
+    status: "umgesetzt"
+    measures: "IS-Leitlinie unterzeichnet, Ressourcen bereitgestellt, Management in Bewertungen eingebunden"
+    evidence:
+      - type: doc
+        ref:   "richtlinien/informationssicherheitsrichtlinie.md"
+        label: "Informationssicherheitsleitlinie"
+    owner: "Geschäftsführung"
+
+  - id: "A.5.5"
+    title: "Kontakt mit Behörden"
+    category: "Organisatorische Maßnahmen"
+    applicable: true
+    justification: "NIS2-Meldepflichten erfordern definierten Behördenkontakt (BSI)"
+    status: "umgesetzt"
+    measures: "BSI als primäre NIS2-Meldestelle benannt, Kontaktdaten im Notfallhandbuch"
+    evidence:
+      - type: doc
+        ref:   "richtlinien/incident-response.md"
+        label: "Incident-Response-Verfahren"
+      - type: ticket
+        ref:   "Meldepflichten"
+        label: "BSI-Meldungen (OTOBO)"
+    owner: "ISB"
+
+  - id: "A.5.6"
+    title: "Kontakt mit Interessengruppen"
+    category: "Organisatorische Maßnahmen"
+    applicable: true
+    justification: "Austausch mit IS-Community verbessert Bedrohungslage"
+    status: "geplant"
+    measures: "Mitgliedschaft in IS-CERT oder Branchenarbeitsgruppe geplant"
+    evidence: []
+    owner: "ISB"
+
+  - id: "A.5.7"
+    title: "Informationen über Bedrohungen (Threat Intelligence)"
+    category: "Organisatorische Maßnahmen"
+    applicable: true
+    justification: "Aktuelle Bedrohungsinformationen verbessern Risikobeurteilung"
+    status: "geplant"
+    measures: "Abonnement BSI-Warnmeldungen, CERT-Bund-Newsletter; strukturierte Auswertung geplant"
+    evidence:
+      - type: ticket
+        ref:   "Risiken::Strategisch"
+        label: "Bedrohungslagen-Risiken (OTOBO)"
+    owner: "IT-Leitung"
+
+  - id: "A.5.8"
+    title: "Informationssicherheit im Projektmanagement"
+    category: "Organisatorische Maßnahmen"
+    applicable: true
+    justification: "Neue Projekte und Systeme müssen IS-Anforderungen berücksichtigen"
+    status: "geplant"
+    measures: "IS-Checkliste für neue Projekte in Entwicklung"
+    evidence: []
+    owner: "ISB"
+
+  - id: "A.5.9"
+    title: "Inventar von Information und anderen Assets"
+    category: "Organisatorische Maßnahmen"
+    applicable: true
+    justification: "Asset-Inventar ist Grundlage für Risikobeurteilung und Schutzbedarfsanalyse"
+    status: "in-umsetzung"
+    measures: "DataGerry als CMDB im Aufbau, Objekt-Typen konfiguriert"
+    evidence:
+      - type: tool
+        ref:   "DataGerry"
+        label: "Asset-Inventar (DataGerry)"
+    owner: "IT-Leitung"
+
+  - id: "A.5.10"
+    title: "Zulässige Nutzung von Information und anderen Assets"
+    category: "Organisatorische Maßnahmen"
+    applicable: true
+    justification: "Klare Nutzungsregeln reduzieren Missbrauchsrisiken"
+    status: "geplant"
+    measures: "Nutzungsrichtlinie als Bestandteil der Zugangsteuerungsrichtlinie geplant"
+    evidence:
+      - type: doc
+        ref:   "richtlinien/zugriffssteuerung.md"
+        label: "Zugangsteuerungsrichtlinie"
+    owner: "ISB"
+
+  - id: "A.5.11"
+    title: "Rückgabe von Assets"
+    category: "Organisatorische Maßnahmen"
+    applicable: true
+    justification: "Offboarding-Prozess muss Rückgabe aller Assets sicherstellen"
+    status: "geplant"
+    measures: "Offboarding-Checkliste in Entwicklung"
+    evidence: []
+    owner: "IT-Leitung"
+
+  - id: "A.5.12"
+    title: "Klassifizierung von Informationen"
+    category: "Organisatorische Maßnahmen"
+    applicable: true
+    justification: "Klassifizierung steuert Schutzmaßnahmen und Zugriffsrechte"
+    status: "in-umsetzung"
+    measures: "VIV-Schema definiert (Vertraulich/Intern/Öffentlich); Anwendung auf alle Assets ausstehend"
+    evidence:
+      - type: doc
+        ref:   "richtlinien/zugriffssteuerung.md"
+        label: "Zugangsteuerungsrichtlinie"
+      - type: tool
+        ref:   "DataGerry"
+        label: "Asset-Klassifizierung (DataGerry)"
+    owner: "ISB"
+
+  - id: "A.5.13"
+    title: "Kennzeichnung von Informationen"
+    category: "Organisatorische Maßnahmen"
+    applicable: true
+    justification: "Kennzeichnung macht Klassifizierung handhabbar"
+    status: "geplant"
+    measures: "Kennzeichnungsrichtlinie für Dokumente und E-Mails geplant"
+    evidence: []
+    owner: "ISB"
+
+  - id: "A.5.14"
+    title: "Informationsübertragung"
+    category: "Organisatorische Maßnahmen"
+    applicable: true
+    justification: "Vertrauliche Informationen müssen sicher übertragen werden"
+    status: "in-umsetzung"
+    measures: "TLS für alle Übertragungen; sichere Dateiübertragung für externe Partner in Planung"
+    evidence:
+      - type: doc
+        ref:   "richtlinien/kryptographie.md"
+        label: "Kryptographierichtlinie"
+    owner: "IT-Leitung"
+
+  - id: "A.5.15"
+    title: "Zugangsteuerung"
+    category: "Organisatorische Maßnahmen"
+    applicable: true
+    justification: "Need-to-know-Prinzip ist zentrales Sicherheitsprinzip"
+    status: "in-umsetzung"
+    measures: "Zugangsteuerungsrichtlinie vorhanden; RBAC teilweise umgesetzt, vollständige Umsetzung ausstehend"
+    evidence:
+      - type: doc
+        ref:   "richtlinien/zugriffssteuerung.md"
+        label: "Zugangsteuerungsrichtlinie"
+      - type: ticket
+        ref:   "Aufgaben::Audit"
+        label: "Access-Review-Protokolle (OTOBO)"
+    owner: "IT-Leitung"
+
+  - id: "A.5.16"
+    title: "Identitätsmanagement"
+    category: "Organisatorische Maßnahmen"
+    applicable: true
+    justification: "Eindeutige Identitäten sind Grundlage für Zugangsteuerung und Audit-Trail"
+    status: "in-umsetzung"
+    measures: "Active Directory / LDAP als zentrales IdM; persönliche Accounts für alle Nutzer"
+    evidence: []
+    owner: "IT-Leitung"
+
+  - id: "A.5.17"
+    title: "Authentifizierungsinformationen"
+    category: "Organisatorische Maßnahmen"
+    applicable: true
+    justification: "Passwortregeln und sichere Speicherung sind essenziell"
+    status: "umgesetzt"
+    measures: "Passwort- und Authentifizierungsrichtlinie; Passwort-Manager im Einsatz"
+    evidence:
+      - type: doc
+        ref:   "richtlinien/passwort-und-authentifizierung.md"
+        label: "Passwort- und Authentifizierungsrichtlinie"
+    owner: "IT-Leitung"
+
+  - id: "A.5.18"
+    title: "Zugangsrechte"
+    category: "Organisatorische Maßnahmen"
+    applicable: true
+    justification: "Rechtevergabe und -entzug muss kontrolliert und nachvollziehbar sein"
+    status: "in-umsetzung"
+    measures: "Prozess für Rechtevergabe/-entzug in Entwicklung; Access Review quartalsweise geplant"
+    evidence:
+      - type: ticket
+        ref:   "Aufgaben::Audit"
+        label: "Rechtevergabe/-entzug-Tickets (OTOBO)"
+    owner: "IT-Leitung"
+
+  - id: "A.5.19"
+    title: "Informationssicherheit in Lieferantenbeziehungen"
+    category: "Organisatorische Maßnahmen"
+    applicable: true
+    justification: "Lieferanten haben Zugang zu sensiblen Systemen und Daten"
+    status: "in-umsetzung"
+    measures: "Lieferantenrichtlinie vorhanden; Lieferanteninventar in DataGerry im Aufbau"
+    evidence:
+      - type: doc
+        ref:   "richtlinien/lieferanten.md"
+        label: "Lieferantenrichtlinie"
+      - type: ticket
+        ref:   "Aufgaben::Lieferant"
+        label: "Lieferantenbewertungen (OTOBO)"
+    owner: "ISB"
+
+  - id: "A.5.20"
+    title: "Behandlung von IS in Lieferantenvereinbarungen"
+    category: "Organisatorische Maßnahmen"
+    applicable: true
+    justification: "Sicherheitsanforderungen müssen vertraglich verankert sein"
+    status: "in-umsetzung"
+    measures: "Standardklauseln für Lieferantenverträge in Entwicklung"
+    evidence:
+      - type: doc
+        ref:   "richtlinien/lieferanten.md"
+        label: "Lieferantenrichtlinie"
+      - type: ticket
+        ref:   "Aufgaben::Lieferant"
+        label: "Vertragsmanagement (OTOBO)"
+    owner: "ISB"
+
+  - id: "A.5.21"
+    title: "IS in der IT-Lieferkette"
+    category: "Organisatorische Maßnahmen"
+    applicable: true
+    justification: "Supply-Chain-Angriffe erfordern Kontrolle der Softwarelieferkette"
+    status: "geplant"
+    measures: "SBOM-Anforderungen und Lieferketten-Risikoanalyse in Planung"
+    evidence: []
+    owner: "IT-Leitung"
+
+  - id: "A.5.22"
+    title: "Überwachung und Änderungsmanagement von Lieferantendienstleistungen"
+    category: "Organisatorische Maßnahmen"
+    applicable: true
+    justification: "Lieferantenleistung und -sicherheitsniveau muss regelmäßig überprüft werden"
+    status: "geplant"
+    measures: "Jährliche Lieferantenbewertung geplant; OTOBO-Tickets für kritische Lieferanten"
+    evidence:
+      - type: ticket
+        ref:   "Aufgaben::Lieferant"
+        label: "Lieferanten-Review-Tickets (OTOBO)"
+    owner: "ISB"
+
+  - id: "A.5.23"
+    title: "Informationssicherheit bei der Nutzung von Cloud-Diensten"
+    category: "Organisatorische Maßnahmen"
+    applicable: true
+    justification: "Cloud-Dienste werden für ISMS-Stack und Geschäftsbetrieb genutzt"
+    status: "in-umsetzung"
+    measures: "Cloud-Anbieter in Lieferantenrichtlinie adressiert; Datenresidenz und Exit-Strategie geprüft"
+    evidence:
+      - type: doc
+        ref:   "richtlinien/lieferanten.md"
+        label: "Lieferantenrichtlinie"
+      - type: ticket
+        ref:   "Aufgaben::Lieferant"
+        label: "Cloud-Anbieter-Bewertung (OTOBO)"
+    owner: "IT-Leitung"
+
+  - id: "A.5.24"
+    title: "IS-Vorfallmanagement — Planung und Vorbereitung"
+    category: "Organisatorische Maßnahmen"
+    applicable: true
+    justification: "Strukturierte Vorfallreaktion ist NIS2-Pflicht"
+    status: "umgesetzt"
+    measures: "Incident-Response-Verfahren dokumentiert; OTOBO-Queue 'Incidents' konfiguriert"
+    evidence:
+      - type: doc
+        ref:   "richtlinien/incident-response.md"
+        label: "Incident-Response-Verfahren"
+      - type: ticket
+        ref:   "Incidents"
+        label: "Vorfalltickets (OTOBO)"
+    owner: "ISB"
+
+  - id: "A.5.25"
+    title: "Beurteilung und Entscheidung über IS-Ereignisse"
+    category: "Organisatorische Maßnahmen"
+    applicable: true
+    justification: "Klassifizierung entscheidet über Eskalation und Meldepflicht"
+    status: "umgesetzt"
+    measures: "Klassifikationsschema P1-P4 im Incident-Response-Verfahren"
+    evidence:
+      - type: doc
+        ref:   "richtlinien/incident-response.md"
+        label: "Incident-Response-Verfahren"
+      - type: ticket
+        ref:   "Incidents"
+        label: "Incident-Klassifikation (OTOBO)"
+    owner: "ISB"
+
+  - id: "A.5.26"
+    title: "Reaktion auf IS-Vorfälle"
+    category: "Organisatorische Maßnahmen"
+    applicable: true
+    justification: "Definierte Reaktion minimiert Schaden und sichert Nachweisführung"
+    status: "umgesetzt"
+    measures: "Eskalationskette und Reaktionsschritte dokumentiert; NIS2-Meldefristen integriert"
+    evidence:
+      - type: doc
+        ref:   "richtlinien/incident-response.md"
+        label: "Incident-Response-Verfahren"
+      - type: ticket
+        ref:   "Incidents"
+        label: "Reaktions-Tickets (OTOBO)"
+    owner: "ISB"
+
+  - id: "A.5.27"
+    title: "Erkenntnisse aus IS-Vorfällen"
+    category: "Organisatorische Maßnahmen"
+    applicable: true
+    justification: "Lessons-Learned verhindert Wiederholung"
+    status: "in-umsetzung"
+    measures: "Post-Incident-Review im Verfahren vorgesehen; regelmäßige Auswertung geplant"
+    evidence:
+      - type: doc
+        ref:   "richtlinien/incident-response.md"
+        label: "Incident-Response-Verfahren"
+      - type: ticket
+        ref:   "Incidents"
+        label: "Post-Incident-Reviews (OTOBO)"
+    owner: "ISB"
+
+  - id: "A.5.28"
+    title: "Beweissicherung"
+    category: "Organisatorische Maßnahmen"
+    applicable: true
+    justification: "Forensische Integrität von Log-Daten für rechtliche und regulatorische Zwecke"
+    status: "geplant"
+    measures: "Log-Aufbewahrung ≥12 Monate geplant; Chain-of-Custody-Verfahren in Entwicklung"
+    evidence:
+      - type: ticket
+        ref:   "Meldepflichten"
+        label: "NIS2-Meldepflicht-Tickets (OTOBO)"
+    owner: "IT-Leitung"
+
+  - id: "A.5.29"
+    title: "Informationssicherheit bei Disruption"
+    category: "Organisatorische Maßnahmen"
+    applicable: true
+    justification: "Geschäftskontinuität erfordert IS-Maßnahmen auch bei Notfällen"
+    status: "in-umsetzung"
+    measures: "Notfallhandbuch in Erstellung; BIA für kritische Prozesse durchgeführt"
+    evidence:
+      - type: doc
+        ref:   "richtlinien/notfallhandbuch.md"
+        label: "Notfallhandbuch"
+      - type: ticket
+        ref:   "Aufgaben::Audit"
+        label: "BCM-Test-Protokolle (OTOBO)"
+    owner: "ISB"
+
+  - id: "A.5.30"
+    title: "IKT-Bereitschaft für Geschäftskontinuität"
+    category: "Organisatorische Maßnahmen"
+    applicable: true
+    justification: "IT-Systeme müssen bei Notfall verfügbar bleiben"
+    status: "in-umsetzung"
+    measures: "Backup-Lösung mit Offsite-Kopie; Wiederherstellungstests quartalsweise geplant"
+    evidence:
+      - type: doc
+        ref:   "richtlinien/backup-und-wiederherstellung.md"
+        label: "Backup- und Wiederherstellungsrichtlinie"
+      - type: ticket
+        ref:   "Aufgaben::Audit"
+        label: "Wiederherstellungstest-Protokolle (OTOBO)"
+      - type: tool
+        ref:   "DataGerry"
+        label: "Systemabhängigkeiten (DataGerry)"
+    owner: "IT-Leitung"
+
+  - id: "A.5.31"
+    title: "Rechtliche, gesetzliche und regulatorische Anforderungen"
+    category: "Organisatorische Maßnahmen"
+    applicable: true
+    justification: "Compliance mit NIS2, DSGVO und branchenspezifischen Vorgaben"
+    status: "in-umsetzung"
+    measures: "Regulatorische Anforderungen in ISMS-Scope dokumentiert; NIS2-Workflow konfiguriert"
+    evidence:
+      - type: ticket
+        ref:   "Meldepflichten"
+        label: "Regulatorische Meldungen (OTOBO)"
+    owner: "ISB"
+
+  - id: "A.5.32"
+    title: "Rechte an geistigem Eigentum"
+    category: "Organisatorische Maßnahmen"
+    applicable: true
+    justification: "Softwarelizenzen und IP-Rechte müssen kontrolliert werden"
+    status: "geplant"
+    measures: "Software-Asset-Management und Lizenzüberprüfung geplant"
+    evidence: []
+    owner: "IT-Leitung"
+
+  - id: "A.5.33"
+    title: "Schutz von Aufzeichnungen"
+    category: "Organisatorische Maßnahmen"
+    applicable: true
+    justification: "ISMS-Aufzeichnungen sind Nachweisdokumente für Audits"
+    status: "umgesetzt"
+    measures: "Git-versionierte Dokumente in Forgejo; Ticket-System für Nachweisführung"
+    evidence:
+      - type: ticket
+        ref:   "Aufgaben::Audit"
+        label: "Audit-Aufzeichnungen (OTOBO)"
+    owner: "ISB"
+
+  - id: "A.5.34"
+    title: "Datenschutz und Schutz personenbezogener Informationen"
+    category: "Organisatorische Maßnahmen"
+    applicable: true
+    justification: "DSGVO-Anforderungen überschneiden sich mit IS-Controls"
+    status: "in-umsetzung"
+    measures: "DSGVO-Koordination mit DSB; Verarbeitungsverzeichnis in Erstellung"
+    evidence: []
+    owner: "Datenschutzbeauftragter"
+
+  - id: "A.5.35"
+    title: "Unabhängige Überprüfung der Informationssicherheit"
+    category: "Organisatorische Maßnahmen"
+    applicable: true
+    justification: "Externe Überprüfung stellt Objektivität sicher"
+    status: "geplant"
+    measures: "Zertifizierungsaudit als externe Überprüfung; ggf. zusätzliches Penetration Testing"
+    evidence:
+      - type: ticket
+        ref:   "Aufgaben::Audit"
+        label: "Interne Audit-Tickets (OTOBO)"
+    owner: "ISB"
+
+  - id: "A.5.36"
+    title: "Einhaltung von Leitlinien und Normen"
+    category: "Organisatorische Maßnahmen"
+    applicable: true
+    justification: "Compliance-Überprüfung ist Teil des ISMS-Betriebs"
+    status: "in-umsetzung"
+    measures: "Interne Audits; automatische Dokumentenprüfung via CI/CD"
+    evidence:
+      - type: ticket
+        ref:   "Aufgaben::Audit"
+        label: "Compliance-Prüfungs-Tickets (OTOBO)"
+    owner: "ISB"
+
+  - id: "A.5.37"
+    title: "Dokumentierte Betriebsabläufe"
+    category: "Organisatorische Maßnahmen"
+    applicable: true
+    justification: "Kritische IT-Prozesse müssen dokumentiert sein"
+    status: "in-umsetzung"
+    measures: "Betriebsdokumentation in BookStack IT-Betrieb im Aufbau"
+    evidence:
+      - type: wiki
+        ref:   "IT-Betriebsdokumentation"
+        label: "Betriebsverfahren (BookStack)"
+    owner: "IT-Leitung"
+
+  # ── A.6 Personenbezogene Maßnahmen (8 Controls) ─────────────────────────
+
+  - id: "A.6.1"
+    title: "Überprüfung"
+    category: "Personenbezogene Maßnahmen"
+    applicable: true
+    justification: "Hintergrundüberprüfungen reduzieren Insider-Risiken"
+    status: "in-umsetzung"
+    measures: "Überprüfung für sensible Positionen (Strafregisterauszug, Referenzen) in Abstimmung mit HR"
+    evidence:
+      - type: ticket
+        ref:   "Aufgaben::Audit"
+        label: "Überprüfungs-Protokolle (OTOBO)"
+    owner: "HR"
+
+  - id: "A.6.2"
+    title: "Beschäftigungsbedingungen"
+    category: "Personenbezogene Maßnahmen"
+    applicable: true
+    justification: "Vertragliche IS-Pflichten müssen vor Arbeitsbeginn kommuniziert werden"
+    status: "in-umsetzung"
+    measures: "Vertraulichkeitserklärung im Arbeitsvertrag; ISMS-Einweisung im Onboarding"
+    evidence: []
+    owner: "HR"
+
+  - id: "A.6.3"
+    title: "IS-Bewusstsein, Schulung und Training"
+    category: "Personenbezogene Maßnahmen"
+    applicable: true
+    justification: "Menschen sind die häufigste Ursache von Sicherheitsvorfällen"
+    status: "in-umsetzung"
+    measures: "Jährliche Pflichtschulung; Materialien in BookStack; Phishing-Simulation geplant"
+    evidence:
+      - type: ticket
+        ref:   "Aufgaben::Schulung"
+        label: "Schulungsnachweise (OTOBO)"
+      - type: wiki
+        ref:   "Awareness & Schulung"
+        label: "Schulungsmaterialien (BookStack)"
+    owner: "ISB"
+
+  - id: "A.6.4"
+    title: "Disziplinarverfahren"
+    category: "Personenbezogene Maßnahmen"
+    applicable: true
+    justification: "Konsequenzen bei Richtlinienverstößen müssen klar und verhältnismäßig sein"
+    status: "umgesetzt"
+    measures: "Disziplinarverfahren in Richtlinien verankert und mit HR abgestimmt"
+    evidence:
+      - type: doc
+        ref:   "richtlinien/informationssicherheitsrichtlinie.md"
+        label: "Informationssicherheitsleitlinie"
+    owner: "HR"
+
+  - id: "A.6.5"
+    title: "Verantwortlichkeiten nach Beendigung oder Wechsel der Beschäftigung"
+    category: "Personenbezogene Maßnahmen"
+    applicable: true
+    justification: "Offboarding muss Assets-Rückgabe und Rechteentzug sicherstellen"
+    status: "geplant"
+    measures: "Offboarding-Checkliste in Entwicklung; Sofortentzug privilegierter Rechte als Pflicht"
+    evidence:
+      - type: ticket
+        ref:   "Aufgaben::Audit"
+        label: "Offboarding-Protokolle (OTOBO)"
+    owner: "HR"
+
+  - id: "A.6.6"
+    title: "Vertraulichkeits- oder Geheimhaltungsvereinbarungen"
+    category: "Personenbezogene Maßnahmen"
+    applicable: true
+    justification: "NDAs schützen sensible Informationen bei Zusammenarbeit mit Dritten"
+    status: "umgesetzt"
+    measures: "NDA-Standardvertrag für externe Mitarbeitende und Lieferanten mit Zugang zu vertraulichen Informationen"
+    evidence: []
+    owner: "Rechtsabteilung"
+
+  - id: "A.6.7"
+    title: "Telearbeit"
+    category: "Personenbezogene Maßnahmen"
+    applicable: true
+    justification: "Home-Office und Remote-Arbeit erfordern spezifische Sicherheitsmaßnahmen"
+    status: "umgesetzt"
+    measures: "Mobile-Device- und Telearbeitsrichtlinie; VPN-Pflicht für Remote-Zugriff"
+    evidence:
+      - type: doc
+        ref:   "richtlinien/mobile-devices.md"
+        label: "Mobile-Device- und Telearbeitsrichtlinie"
+    owner: "IT-Leitung"
+
+  - id: "A.6.8"
+    title: "Meldung von IS-Ereignissen"
+    category: "Personenbezogene Maßnahmen"
+    applicable: true
+    justification: "Schnelle Meldung ist Voraussetzung für wirksame Incident Response"
+    status: "umgesetzt"
+    measures: "Meldeweg (OTOBO/E-Mail) dokumentiert und in Awareness-Schulung kommuniziert"
+    evidence:
+      - type: doc
+        ref:   "richtlinien/incident-response.md"
+        label: "Incident-Response-Verfahren"
+    owner: "ISB"
+
+  # ── A.7 Physische Maßnahmen (14 Controls) ───────────────────────────────
+
+  - id: "A.7.1"
+    title: "Physische Sicherheitsperimeter"
+    category: "Physische Maßnahmen"
+    applicable: true
+    justification: "Serverräume und Büros müssen physisch gesichert sein"
+    status: "in-umsetzung"
+    measures: "Zutrittskontrolle für Serverraum vorhanden; Besucherregelung in Überarbeitung"
+    evidence: []
+    owner: "Facility Management"
+
+  - id: "A.7.2"
+    title: "Physischer Zugang"
+    category: "Physische Maßnahmen"
+    applicable: true
+    justification: "Unbefugter physischer Zugang ermöglicht direkte Kompromittierung"
+    status: "in-umsetzung"
+    measures: "Zutrittskarten für Serverraum; Besucherbegleitung; Protokollierung geplant"
+    evidence: []
+    owner: "Facility Management"
+
+  - id: "A.7.3"
+    title: "Sicherung von Büros, Räumlichkeiten und Einrichtungen"
+    category: "Physische Maßnahmen"
+    applicable: true
+    justification: "Büros enthalten sensible Unterlagen und Zugangsmittel"
+    status: "in-umsetzung"
+    measures: "Clear-Desk-Richtlinie; Schredder-Pflicht; Besucherbereiche klar definiert"
+    evidence:
+      - type: doc
+        ref:   "richtlinien/clear-desk.md"
+        label: "Clear-Desk- und Clear-Screen-Richtlinie"
+      - type: ticket
+        ref:   "Aufgaben::Audit"
+        label: "Clear-Desk-Checks (OTOBO)"
+    owner: "ISB"
+
+  - id: "A.7.4"
+    title: "Physische Sicherheitsüberwachung"
+    category: "Physische Maßnahmen"
+    applicable: true
+    justification: "Erkennung unbefugter physischer Zugriffe"
+    status: "geplant"
+    measures: "Zutrittsprotokolle für Serverraum; Videoüberwachung nach Bedarf geprüft"
+    evidence: []
+    owner: "Facility Management"
+
+  - id: "A.7.5"
+    title: "Schutz vor physischen und umgebungsbedingten Bedrohungen"
+    category: "Physische Maßnahmen"
+    applicable: true
+    justification: "Feuer, Wasser, Überspannung können Hardware und Daten vernichten"
+    status: "in-umsetzung"
+    measures: "USV und Brandmelder im Serverraum; Wassereinbruchschutz geprüft"
+    evidence: []
+    owner: "Facility Management"
+
+  - id: "A.7.6"
+    title: "Arbeiten in Sicherheitsbereichen"
+    category: "Physische Maßnahmen"
+    applicable: true
+    justification: "Tätigkeiten in Sicherheitsbereichen erfordern besondere Kontrollen"
+    status: "geplant"
+    measures: "Verfahren für Wartungsarbeiten im Serverraum in Entwicklung"
+    evidence: []
+    owner: "IT-Leitung"
+
+  - id: "A.7.7"
+    title: "Clear Desk und Clear Screen"
+    category: "Physische Maßnahmen"
+    applicable: true
+    justification: "Verhindert physischen Informationsabfluss am Arbeitsplatz"
+    status: "umgesetzt"
+    measures: "Clear-Desk-/Clear-Screen-Richtlinie; automatische Bildschirmsperre (5 min) konfiguriert"
+    evidence:
+      - type: doc
+        ref:   "richtlinien/clear-desk.md"
+        label: "Clear-Desk- und Clear-Screen-Richtlinie"
+      - type: ticket
+        ref:   "Aufgaben::Audit"
+        label: "Clear-Desk/Screen-Checks (OTOBO)"
+    owner: "ISB"
+
+  - id: "A.7.8"
+    title: "Standort und Schutz der Geräte"
+    category: "Physische Maßnahmen"
+    applicable: true
+    justification: "Server und Netzwerkgeräte müssen physisch geschützt aufgestellt sein"
+    status: "umgesetzt"
+    measures: "Server in abgeschlossenem Rack im Serverraum; UPS angeschlossen"
+    evidence: []
+    owner: "IT-Leitung"
+
+  - id: "A.7.9"
+    title: "Sicherheit von Assets außerhalb des Betriebsgeländes"
+    category: "Physische Maßnahmen"
+    applicable: true
+    justification: "Mobile Geräte sind außerhalb besonders exponiert"
+    status: "umgesetzt"
+    measures: "Mobile-Device-Richtlinie; Festplattenverschlüsselung Pflicht; Remote-Wipe"
+    evidence:
+      - type: doc
+        ref:   "richtlinien/mobile-devices.md"
+        label: "Mobile-Device- und Telearbeitsrichtlinie"
+    owner: "IT-Leitung"
+
+  - id: "A.7.10"
+    title: "Speichermedien"
+    category: "Physische Maßnahmen"
+    applicable: true
+    justification: "Externe Datenträger sind häufiger Infektions- und Abflusskanal"
+    status: "in-umsetzung"
+    measures: "USB-Richtlinie in Mobile-Device-Richtlinie adressiert; technische Durchsetzung geplant"
+    evidence:
+      - type: doc
+        ref:   "richtlinien/mobile-devices.md"
+        label: "Mobile-Device- und Telearbeitsrichtlinie"
+    owner: "IT-Leitung"
+
+  - id: "A.7.11"
+    title: "Unterstützende Versorgungseinrichtungen"
+    category: "Physische Maßnahmen"
+    applicable: true
+    justification: "Strom- und Netzwerkausfall gefährden Verfügbarkeit"
+    status: "in-umsetzung"
+    measures: "USV vorhanden; redundante Internetanbindung in Prüfung"
+    evidence: []
+    owner: "Facility Management"
+
+  - id: "A.7.12"
+    title: "Verkabelungssicherheit"
+    category: "Physische Maßnahmen"
+    applicable: true
+    justification: "Physischer Zugang zu Netzwerkkabeln ermöglicht Lauschangriffe"
+    status: "in-umsetzung"
+    measures: "Verkabelung im Serverraum gesichert; externe Kabel in Kabelkanälen"
+    evidence: []
+    owner: "IT-Leitung"
+
+  - id: "A.7.13"
+    title: "Wartung von Geräten"
+    category: "Physische Maßnahmen"
+    applicable: true
+    justification: "Wartungsarbeiten dürfen nicht zu unbefugtem Zugang oder Datenverlust führen"
+    status: "geplant"
+    measures: "Wartungsprotokoll und Datenlöschung vor externer Weitergabe in Entwicklung"
+    evidence: []
+    owner: "IT-Leitung"
+
+  - id: "A.7.14"
+    title: "Sichere Entsorgung oder Wiederverwendung von Geräten"
+    category: "Physische Maßnahmen"
+    applicable: true
+    justification: "Daten auf ausgemusterten Geräten müssen sicher gelöscht werden"
+    status: "geplant"
+    measures: "Entsorgungsverfahren mit zertifiziertem Entsorger in Planung (DIN 66399)"
+    evidence: []
+    owner: "IT-Leitung"
+
+  # ── A.8 Technologische Maßnahmen (34 Controls) ──────────────────────────
+
+  - id: "A.8.1"
+    title: "Benutzerendgeräte"
+    category: "Technologische Maßnahmen"
+    applicable: true
+    justification: "Endgeräte sind primärer Angriffspunkt"
+    status: "umgesetzt"
+    measures: "Mobile-Device-Richtlinie; MDM im Einsatz; automatische Updates konfiguriert"
+    evidence:
+      - type: doc
+        ref:   "richtlinien/mobile-devices.md"
+        label: "Mobile-Device- und Telearbeitsrichtlinie"
+    owner: "IT-Leitung"
+
+  - id: "A.8.2"
+    title: "Privilegierte Zugriffsrechte"
+    category: "Technologische Maßnahmen"
+    applicable: true
+    justification: "Admin-Konten sind hochwertige Angriffsziele"
+    status: "umgesetzt"
+    measures: "Separate Admin-Konten; MFA für alle privilegierten Zugänge; PAM evaluiert"
+    evidence:
+      - type: doc
+        ref:   "richtlinien/passwort-und-authentifizierung.md"
+        label: "Passwort- und Authentifizierungsrichtlinie"
+    owner: "IT-Leitung"
+
+  - id: "A.8.3"
+    title: "Einschränkung des Informationszugangs"
+    category: "Technologische Maßnahmen"
+    applicable: true
+    justification: "Least-Privilege-Prinzip reduziert Schadenspotenzial"
+    status: "in-umsetzung"
+    measures: "RBAC-Implementierung; regelmäßige Access Reviews geplant"
+    evidence:
+      - type: doc
+        ref:   "richtlinien/zugriffssteuerung.md"
+        label: "Zugangsteuerungsrichtlinie"
+    owner: "IT-Leitung"
+
+  - id: "A.8.4"
+    title: "Zugang zum Quellcode"
+    category: "Technologische Maßnahmen"
+    applicable: true
+    justification: "Quellcode enthält potenziell sensitive Logik und Credentials"
+    status: "umgesetzt"
+    measures: "Forgejo mit Branch-Schutz und PR-Pflicht; keine Credentials im Code (Secrets-Scanning)"
+    evidence: []
+    owner: "IT-Leitung"
+
+  - id: "A.8.5"
+    title: "Sichere Authentifizierung"
+    category: "Technologische Maßnahmen"
+    applicable: true
+    justification: "Schwache Authentifizierung ist häufigste Einstiegsursache"
+    status: "umgesetzt"
+    measures: "MFA-Pflicht für Remote/Cloud/Admin; FIDO2 bevorzugt; Passwort-Manager"
+    evidence:
+      - type: doc
+        ref:   "richtlinien/passwort-und-authentifizierung.md"
+        label: "Passwort- und Authentifizierungsrichtlinie"
+    owner: "IT-Leitung"
+
+  - id: "A.8.6"
+    title: "Kapazitätsmanagement"
+    category: "Technologische Maßnahmen"
+    applicable: true
+    justification: "Kapazitätsengpässe gefährden Verfügbarkeit"
+    status: "geplant"
+    measures: "Monitoring von Speicher, CPU und Netzwerk; Kapazitätsplanung jährlich"
+    evidence: []
+    owner: "IT-Leitung"
+
+  - id: "A.8.7"
+    title: "Schutz vor Malware"
+    category: "Technologische Maßnahmen"
+    applicable: true
+    justification: "Malware ist eine der häufigsten Bedrohungen"
+    status: "umgesetzt"
+    measures: "Endpoint-Protection auf allen Endgeräten; E-Mail-Filterung aktiv"
+    evidence:
+      - type: ticket
+        ref:   "Risiken::Technisch"
+        label: "Malware-Risiken (OTOBO)"
+    owner: "IT-Leitung"
+
+  - id: "A.8.8"
+    title: "Management technischer Schwachstellen"
+    category: "Technologische Maßnahmen"
+    applicable: true
+    justification: "Ungepatchte Schwachstellen sind häufiger Angriffsvektor"
+    status: "in-umsetzung"
+    measures: "Patch-Management-Richtlinie; Vulnerability-Scanning geplant; kritisch ≤72h"
+    evidence:
+      - type: doc
+        ref:   "richtlinien/backup-und-wiederherstellung.md"
+        label: "Backup- und Wiederherstellungsrichtlinie"
+      - type: ticket
+        ref:   "Risiken::Technisch"
+        label: "Schwachstellen-Tickets (OTOBO)"
+    owner: "IT-Leitung"
+
+  - id: "A.8.9"
+    title: "Konfigurationsmanagement"
+    category: "Technologische Maßnahmen"
+    applicable: true
+    justification: "Fehlkonfigurationen sind häufige Ursache von Sicherheitslücken"
+    status: "in-umsetzung"
+    measures: "Infrastructure-as-Code in Forgejo; Baseline-Konfigurationen in Entwicklung"
+    evidence:
+      - type: wiki
+        ref:   "IT-Betriebsdokumentation"
+        label: "Konfigurationsbaselines (BookStack)"
+    owner: "IT-Leitung"
+
+  - id: "A.8.10"
+    title: "Löschung von Informationen"
+    category: "Technologische Maßnahmen"
+    applicable: true
+    justification: "Nicht mehr benötigte Daten müssen sicher gelöscht werden"
+    status: "geplant"
+    measures: "Datenlöschungsrichtlinie und Aufbewahrungsfristen in Entwicklung"
+    evidence: []
+    owner: "IT-Leitung"
+
+  - id: "A.8.11"
+    title: "Datenmaskierung"
+    category: "Technologische Maßnahmen"
+    applicable: true
+    justification: "Sensible Daten in Testumgebungen müssen anonymisiert werden"
+    status: "geplant"
+    measures: "Datenmaskierung für Testdaten in Entwicklungsumgebungen geplant"
+    evidence: []
+    owner: "IT-Leitung"
+
+  - id: "A.8.12"
+    title: "Verhinderung von Datenleckage"
+    category: "Technologische Maßnahmen"
+    applicable: true
+    justification: "DLP verhindert unautorisierten Datenabfluss"
+    status: "geplant"
+    measures: "E-Mail-DLP und USB-Kontrolle evaluiert; Priorität nach Risikobeurteilung"
+    evidence: []
+    owner: "IT-Leitung"
+
+  - id: "A.8.13"
+    title: "Sicherung von Informationen"
+    category: "Technologische Maßnahmen"
+    applicable: true
+    justification: "Backup ist grundlegende Verfügbarkeits- und Wiederherstellungsmaßnahme"
+    status: "umgesetzt"
+    measures: "3-2-1-Backup täglich; verschlüsselt; Restore-Tests quartalsweise"
+    evidence:
+      - type: doc
+        ref:   "richtlinien/backup-und-wiederherstellung.md"
+        label: "Backup- und Wiederherstellungsrichtlinie"
+      - type: ticket
+        ref:   "Aufgaben::Audit"
+        label: "Backup-Testprotokolle (OTOBO)"
+    owner: "IT-Leitung"
+
+  - id: "A.8.14"
+    title: "Redundanz von informationsverarbeitenden Einrichtungen"
+    category: "Technologische Maßnahmen"
+    applicable: true
+    justification: "Kritische Systeme dürfen keine Single Points of Failure haben"
+    status: "geplant"
+    measures: "Redundanzanalyse für kritische Systeme geplant; Priorität nach BIA"
+    evidence: []
+    owner: "IT-Leitung"
+
+  - id: "A.8.15"
+    title: "Protokollierung"
+    category: "Technologische Maßnahmen"
+    applicable: true
+    justification: "Logs sind Grundlage für Incident Detection und Forensik"
+    status: "in-umsetzung"
+    measures: "Zentrales Log-Management in Planung; Authentifizierungs-Logs aktiv; ≥12 Monate"
+    evidence:
+      - type: wiki
+        ref:   "IT-Betriebsdokumentation"
+        label: "Log-Konfiguration (BookStack)"
+    owner: "IT-Leitung"
+
+  - id: "A.8.16"
+    title: "Überwachungsaktivitäten"
+    category: "Technologische Maßnahmen"
+    applicable: true
+    justification: "Anomalie-Erkennung erfordert aktive Überwachung"
+    status: "geplant"
+    measures: "Monitoring und Alerting für kritische Systeme in Entwicklung"
+    evidence: []
+    owner: "IT-Leitung"
+
+  - id: "A.8.17"
+    title: "Zeitsynchronisation"
+    category: "Technologische Maßnahmen"
+    applicable: true
+    justification: "Korrekte Zeitstempel sind für Log-Korrelation und Forensik essenziell"
+    status: "umgesetzt"
+    measures: "NTP-Synchronisation auf allen Systemen aktiv"
+    evidence: []
+    owner: "IT-Leitung"
+
+  - id: "A.8.18"
+    title: "Nutzung privilegierter Dienstprogramme"
+    category: "Technologische Maßnahmen"
+    applicable: true
+    justification: "Admin-Tools können bei Missbrauch erheblichen Schaden anrichten"
+    status: "geplant"
+    measures: "Genehmigungsverfahren für privilegierte Dienstprogramme in Entwicklung"
+    evidence: []
+    owner: "IT-Leitung"
+
+  - id: "A.8.19"
+    title: "Installation von Software auf operativen Systemen"
+    category: "Technologische Maßnahmen"
+    applicable: true
+    justification: "Unkontrollierte Softwareinstallation erhöht Angriffsfläche"
+    status: "in-umsetzung"
+    measures: "Softwareinstallation nur durch IT; MDM für Endgeräte; Whitelist in Planung"
+    evidence: []
+    owner: "IT-Leitung"
+
+  - id: "A.8.20"
+    title: "Netzwerksicherheit"
+    category: "Technologische Maßnahmen"
+    applicable: true
+    justification: "Netzwerksicherheit ist Grundlage für alle anderen technischen Controls"
+    status: "in-umsetzung"
+    measures: "Firewall aktiv; Netzwerksegmentierung in Prüfung; Netzwerkdokumentation erstellt"
+    evidence:
+      - type: wiki
+        ref:   "IT-Betriebsdokumentation"
+        label: "Netzwerkarchitektur (BookStack)"
+    owner: "IT-Leitung"
+
+  - id: "A.8.21"
+    title: "Sicherheit von Netzwerkdiensten"
+    category: "Technologische Maßnahmen"
+    applicable: true
+    justification: "Netzwerkdienste (DNS, DHCP, VPN) müssen gesichert sein"
+    status: "in-umsetzung"
+    measures: "TLS für alle internen Dienste; VPN mit MFA; DNS-Filtering evaluiert"
+    evidence:
+      - type: wiki
+        ref:   "IT-Betriebsdokumentation"
+        label: "Netzwerkdienste (BookStack)"
+    owner: "IT-Leitung"
+
+  - id: "A.8.22"
+    title: "Segmentierung von Netzwerken"
+    category: "Technologische Maßnahmen"
+    applicable: true
+    justification: "Segmentierung begrenzt Schadenspotenzial bei Kompromittierung"
+    status: "in-umsetzung"
+    measures: "Trennung Produktion/Büro/DMZ; vollständige Mikrosegmentierung geplant"
+    evidence:
+      - type: wiki
+        ref:   "IT-Betriebsdokumentation"
+        label: "Netzwerksegmentierung (BookStack)"
+    owner: "IT-Leitung"
+
+  - id: "A.8.23"
+    title: "Webfilterung"
+    category: "Technologische Maßnahmen"
+    applicable: true
+    justification: "Schutz vor Drive-by-Downloads und Phishing über Browser"
+    status: "geplant"
+    measures: "DNS-basierter Webfilter evaluiert; E-Mail-Linkscanning aktiv"
+    evidence: []
+    owner: "IT-Leitung"
+
+  - id: "A.8.24"
+    title: "Einsatz von Kryptographie"
+    category: "Technologische Maßnahmen"
+    applicable: true
+    justification: "Verschlüsselung schützt Vertraulichkeit und Integrität"
+    status: "umgesetzt"
+    measures: "Kryptographierichtlinie; AES-256, TLS 1.3; Festplattenverschlüsselung Pflicht"
+    evidence:
+      - type: doc
+        ref:   "richtlinien/kryptographie.md"
+        label: "Kryptographierichtlinie"
+    owner: "IT-Leitung"
+
+  - id: "A.8.25"
+    title: "Sicherheit in der Entwicklung"
+    category: "Technologische Maßnahmen"
+    applicable: false
+    justification: "Keine eigene Softwareentwicklung im Scope; ausschließlich Verwendung von Open-Source-Software"
+    status: ""
+    measures: ""
+    evidence: []
+    owner: ""
+
+  - id: "A.8.26"
+    title: "Sicherheitsanforderungen an Anwendungen"
+    category: "Technologische Maßnahmen"
+    applicable: false
+    justification: "Keine eigene Anwendungsentwicklung; Anforderungen an eingekaufte Software über A.5.21 (IT-Lieferkette) abgedeckt"
+    status: ""
+    measures: ""
+    evidence: []
+    owner: ""
+
+  - id: "A.8.27"
+    title: "Sichere Systemarchitektur und technische Grundsätze"
+    category: "Technologische Maßnahmen"
+    applicable: true
+    justification: "Architekturprinzipien (Least Privilege, Defense in Depth) gelten auch ohne eigene Entwicklung"
+    status: "in-umsetzung"
+    measures: "Secure-by-Default-Prinzip bei Systemkonfiguration; Dokumentation in BookStack"
+    evidence: []
+    owner: "IT-Leitung"
+
+  - id: "A.8.28"
+    title: "Sicheres Programmieren"
+    category: "Technologische Maßnahmen"
+    applicable: false
+    justification: "Keine eigene Softwareentwicklung im Scope"
+    status: ""
+    measures: ""
+    evidence: []
+    owner: ""
+
+  - id: "A.8.29"
+    title: "Sicherheitstests in Entwicklung und Abnahme"
+    category: "Technologische Maßnahmen"
+    applicable: false
+    justification: "Keine eigene Softwareentwicklung; Abnahmetests für Konfigurationen über Konfigurationsmanagement abgedeckt"
+    status: ""
+    measures: ""
+    evidence: []
+    owner: ""
+
+  - id: "A.8.30"
+    title: "Ausgelagerte Entwicklung"
+    category: "Technologische Maßnahmen"
+    applicable: false
+    justification: "Keine ausgelagerte Softwareentwicklung; Lieferanten-Controls über A.5.19-5.22"
+    status: ""
+    measures: ""
+    evidence: []
+    owner: ""
+
+  - id: "A.8.31"
+    title: "Trennung von Entwicklungs-, Test- und Produktionsumgebungen"
+    category: "Technologische Maßnahmen"
+    applicable: true
+    justification: "ISMS-Stack (Docker) muss von produktiven Systemen getrennt sein"
+    status: "umgesetzt"
+    measures: "Separate Docker-Umgebungen für Demo/Test und Produktion; unterschiedliche Zugangsdaten"
+    evidence:
+      - type: wiki
+        ref:   "IT-Betriebsdokumentation"
+        label: "Umgebungstrennung (BookStack)"
+    owner: "IT-Leitung"
+
+  - id: "A.8.32"
+    title: "Änderungsmanagement"
+    category: "Technologische Maßnahmen"
+    applicable: true
+    justification: "Unkontrollierte Änderungen an Systemen gefährden Stabilität und Sicherheit"
+    status: "in-umsetzung"
+    measures: "Änderungen via Git-PR (Infrastruktur/Konfiguration); Change-Advisory-Board geplant"
+    evidence:
+      - type: ticket
+        ref:   "Aufgaben::Audit"
+        label: "Change-Protokolle (OTOBO)"
+    owner: "IT-Leitung"
+
+  - id: "A.8.33"
+    title: "Testinformationen"
+    category: "Technologische Maßnahmen"
+    applicable: true
+    justification: "Echtdaten in Testumgebungen dürfen nicht verwendet werden"
+    status: "umgesetzt"
+    measures: "Demo-Seed-Skripte erzeugen ausschließlich synthetische Testdaten"
+    evidence: []
+    owner: "IT-Leitung"
+
+  - id: "A.8.34"
+    title: "Schutz von IS bei Audits und Tests"
+    category: "Technologische Maßnahmen"
+    applicable: true
+    justification: "Audit-Aktivitäten dürfen Produktion nicht gefährden"
+    status: "geplant"
+    measures: "Read-only-Zugang für Auditoren; zeitlich begrenzte Audit-Accounts geplant"
+    evidence: []
+    owner: "ISB"

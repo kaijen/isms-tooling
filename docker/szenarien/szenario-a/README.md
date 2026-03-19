@@ -58,8 +58,21 @@ In Forgejo:
 
 OTOBO Erstinstallation über `https://tickets.<domain>/otobo/installer.pl`.
 
-Nach der Installation Queue-Hierarchie anlegen:
+Nach dem Installer das Setup-Skript ausführen — es erstellt Queues, Dynamic Fields,
+Ticket-Zustände, Webservice und Benutzer vollautomatisch:
 
+```bash
+./setup-otobo.sh
+```
+
+Das Skript ist idempotent und kann mehrfach ausgeführt werden (überspringt bereits
+vorhandene Objekte). Anschließend die Standard-Passwörter in der OTOBO-Admin-Oberfläche
+ändern.
+
+<details>
+<summary>Was setup-otobo.sh einrichtet</summary>
+
+**Queues**
 ```
 Risiken::Strategisch
 Risiken::Operativ
@@ -70,18 +83,34 @@ Aufgaben::Lieferant
 Incidents
 ```
 
-Dynamic Fields für Risiko-Tickets:
-| Feldname | Typ | Werte |
-|----------|-----|-------|
-| `RisikoWahrscheinlichkeit` | Dropdown | 1-Selten, 2-Möglich, 3-Wahrscheinlich, 4-Fast sicher |
-| `RisikoSchadenshoehe` | Dropdown | 1-Gering, 2-Mittel, 3-Hoch, 4-Kritisch |
-| `RisikoWert` | Text | berechnet (W × S) |
-| `BezugsobjektTyp` | Dropdown | Asset, Prozess, OE, Extern, Regulatorisch |
+**Dynamic Fields** (alle auf Ticket-Ebene)
+| Feld | Typ | Werte |
+|------|-----|-------|
+| `RisikoWahrscheinlichkeit` | Dropdown | 1 Selten · 2 Möglich · 3 Wahrscheinlich · 4 Fast sicher |
+| `RisikoSchadenshoehe` | Dropdown | 1 Gering · 2 Mittel · 3 Hoch · 4 Kritisch |
+| `RisikoWert` | Text | berechnet (W × S), manuell oder per Automatisierung befüllt |
+| `BezugsobjektTyp` | Dropdown | Asset · Prozess · OE · Externer Akteur · Regulatorisch |
 | `BezugsobjektID` | Text | Referenz auf DataGerry-Objekt oder Freitext |
-| `Risikoebene` | Dropdown | Strategisch, Operativ, Technisch |
+| `Risikoebene` | Dropdown | Strategisch · Operativ · Technisch |
 
-Status-Tags als Ticket-Priorität oder eigenes Dynamic Field:
-`identifiziert → bewertet → behandlung_geplant → in_behandlung → akzeptiert / geschlossen`
+**Ticket-Zustände** (Risiko-Workflow)
+```
+identifiziert → bewertet → behandlung-geplant → in-behandlung → akzeptiert
+```
+
+**Webservice**: `GenericTicketConnectorREST` (wird aus dem OTOBO-Installationspaket importiert)
+
+**Benutzer**
+| Login | Rolle |
+|-------|-------|
+| `isms-manager` | Agent, Gruppe isms-team (rw) |
+| `isms-auditor` | Agent, Gruppe isms-team (rw) |
+| `isms-demo` | Customer-User (für Demo-Seed-Skripte) |
+
+</details>
+
+Nach der Einrichtung Dynamic Fields den Ticket-Masken zuweisen:
+Admin → System Configuration → Ticket → Frontend → Agent → Ticket → ViewNew/ViewZoom
 
 ### 3. DataGerry
 
