@@ -116,6 +116,51 @@ selbst-hostbar. Kanban-Boards ergänzen den Issue Tracker — sie ersetzen ihn n
 
 ---
 
+## Wiki
+
+Anforderungen: Markdown als primäres Format, REST/GraphQL-API für Integration, Open Source,
+selbst-hostbar.
+
+**Abgrenzung zum SSG**: Der SSG veröffentlicht freigegebene Dokumente aus dem Git-Repository
+— der Freigabeprozess ist der PR-Workflow. Ein Wiki ermöglicht direktes kollaboratives
+Bearbeiten ohne diesen Umweg. Beide Klassen schließen sich nicht aus; sie erfüllen
+unterschiedliche Zwecke:
+
+| | SSG | Wiki |
+|--|-----|------|
+| Workflow | Git-PR-Freigabe | Direktes Bearbeiten |
+| Zielgruppe | Lesende (Mitarbeitende, Auditoren) | Mitschreibende (Wissensaufbau) |
+| ISMS-Einsatz | Freigegebene Richtlinien, Nachweise | Awareness-Inhalte, interne Handbücher |
+| Versionierung | Git-History | Interne Wiki-History |
+
+| Kriterium | Wiki.js | BookStack | DokuWiki |
+|-----------|:-:|:-:|:-:|
+| Markdown (nativ) | ✓ | ✓ | ~ (Plugin) |
+| REST API | ~ (GraphQL) | ✓ | ~ (Plugin) |
+| Git-Backend (Inhalt in Git) | ✓ | ✗ | ✗ |
+| Strukturierung (Hierarchie) | ✓ | ✓ (Bücher/Kapitel) | ✓ (Namespaces) |
+| Zugriffssteuerung | ✓ | ✓ | ✓ |
+| OIDC / SSO | ✓ | ✓ | ~ (Plugin) |
+| Selbst-hostbar | ✓ | ✓ | ✓ |
+| Open Source | ✓ (AGPL) | ✓ (MIT) | ✓ (GPL) |
+| Ressourcenbedarf | mittel | mittel | gering |
+| Moderne UI | ✓ | ✓ | ✗ |
+
+**Einschätzung**
+
+- **Wiki.js**: Markdown-nativ, AGPL, aktive Entwicklung. Herausragendes Feature für ISMS:
+  optionales Git-Backend — Wikiseiten werden in einem Git-Repository gespeichert und sind
+  damit versioniert, klonbar und in den VCS-Workflow integrierbar. GraphQL-API statt REST
+  ist gewöhnungsbedürftig, aber vollständig.
+- **BookStack**: Klarste Hierarchie (Bücher → Kapitel → Seiten) — gut geeignet für
+  strukturierte ISMS-Dokumentation wie Handbücher und Awareness-Material. REST-API ist
+  vollständig und gut dokumentiert. MIT-Lizenz. Kein Git-Backend.
+- **DokuWiki**: Bewährt und extrem ressourcenschonend (dateibasiert, keine Datenbank).
+  Markdown und API nur über Plugins — Abhängigkeit von Plugin-Pflege. UI veraltet.
+  Für neue Setups kein bevorzugter Kandidat.
+
+---
+
 ## Asset Management / CMDB
 
 Anforderungen: Frei definierbare Objekt-Schemata, Pflichtfelder je Typ, Verlinkung zu
@@ -190,13 +235,13 @@ Anforderungen: Markdown, CI-Integration, Suchfunktion, niedrige Einstiegshürde.
 
 ## Zusammenfassung: Empfohlene Kombinationen
 
-| Profil | VCS-Plattform | Issue Tracker | Kanban | Asset Management | SSG |
-|--------|--------------|--------------|--------|-----------------|-----|
-| Minimale Abhängigkeiten, selbst-gehostet | Forgejo | Plane | Wekan | DataGerry | MkDocs Material |
-| ITIL-orientiert, Service-Desk-nah | Forgejo | OTOBO | Wekan | DataGerry | MkDocs Material |
-| Alles aus einer Hand | GitLab CE | OTOBO | Wekan | DataGerry | GitLab Pages |
-| SaaS, kein Selbst-Hosting | GitHub | Plane (Cloud) | Wekan (Cloud) | DataGerry | GitHub Pages |
-| Bewährt, ressourcenschonend | Forgejo | Redmine | Kanboard | DataGerry | MkDocs Material |
+| Profil | VCS-Plattform | Issue Tracker | Kanban | Wiki | Asset Management | SSG |
+|--------|--------------|--------------|--------|------|-----------------|-----|
+| Minimale Abhängigkeiten, selbst-gehostet | Forgejo | Plane | Wekan | BookStack | DataGerry | MkDocs Material |
+| ITIL-orientiert, Service-Desk-nah | Forgejo | OTOBO | Wekan | Wiki.js | DataGerry | MkDocs Material |
+| Alles aus einer Hand | GitLab CE | OTOBO | Wekan | BookStack | DataGerry | GitLab Pages |
+| SaaS, kein Selbst-Hosting | GitHub | Plane (Cloud) | Wekan (Cloud) | BookStack | DataGerry | GitHub Pages |
+| Bewährt, ressourcenschonend | Forgejo | Redmine | Kanboard | DokuWiki | DataGerry | MkDocs Material |
 
 Die Kombination **Forgejo + Plane + DataGerry + MkDocs** wird in den Szenarien als
 Referenz-Stack verwendet. Die Variante mit **OTOBO** statt Plane ist besonders geeignet

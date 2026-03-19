@@ -17,6 +17,7 @@ bewertet.
 | **CI** | CI/CD-Pipeline | Automatisierte Builds und Deployments bei Git-Events |
 | **IT** | Issue Tracker | Tickets, Status-Workflows, Felder, Templates, Wiederholung |
 | **KB** | Kanban-Board | Visuelle Projektsteuerung, Swimlanes, Karten-Templates |
+| **WK** | Wiki | Kollaborative Wissensbasis, direktes Bearbeiten ohne PR-Workflow |
 | **AM** | Asset Management / CMDB | Inventar mit frei definierbaren Schemata, Verlinkung zu Risiken |
 | **KI** | KI-Assistent | Textentwürfe, Formulierungen, Konsistenzprüfung |
 
