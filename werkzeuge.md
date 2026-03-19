@@ -314,11 +314,42 @@ VCS und SSG können in SaaS betrieben werden wenn nur freigegebene, weniger
 schutzbedürftige Inhalte dort landen. Das Risikoregister und Incident-Tracking
 bleiben self-hosted unter eigener Kontrolle.
 
+### 100% Cloud
+
+Für Organisationen ohne eigene IT-Infrastruktur oder ohne Bereitschaft zum Betrieb
+eigener Server ist ein vollständiger SaaS-Stack eine legitime und pragmatische Wahl.
+Die Voraussetzungen sind nicht technischer, sondern vertraglicher Natur:
+
+- **Auftragsverarbeitungsvertrag (AVV/DPA)** mit jedem Anbieter
+- **EU-Hosting** bevorzugt oder explizit vereinbart (DSGVO Art. 46)
+- **Datenportabilität** sicherstellen: Export-Formate je Tool prüfen, bevor man
+  sich bindet — Vendor Lock-in ist das Hauptrisiko
+
+Ein vollständiger Cloud-Stack könnte aussehen:
+
+| Tool-Klasse | Kandidat | Hinweis |
+|-------------|---------|---------|
+| VCS + CI + SSG | GitHub.com + GitHub Pages | Ausgereift, weit verbreitet |
+| Issue Tracker | Plane Cloud | SaaS mit self-hosted Fallback ohne Datenmigration |
+| Kanban | Plane Cloud | In Plane integriert |
+| Wiki | Confluence Cloud | Marktstandard, hohe Akzeptanz; oder GitBook für schlankere Option |
+| Asset Management | — | Schwachstelle: kein leichtgewichtiger SaaS-CMDB mit freien Schemata verfügbar |
+
+**Asset Management** ist der einzige blinde Fleck im 100%-Cloud-Szenario. Verfügbare
+Optionen sind entweder IT-fokussiert (Freshservice, ServiceNow — zu schwer und zu teuer)
+oder nicht auf ISMS-Informationsassets ausgelegt. Pragmatischer Workaround: Asset-Register
+als strukturiertes Spreadsheet (Google Sheets, Microsoft 365) oder als Markdown-Tabellen
+im VCS — auditierbar, ohne Zusatzwerkzeug.
+
+**Für Auditoren** ist ein vollständiger SaaS-Stack unproblematisch, solange
+Nachweisführung und Zugriffskontrolle sauber umgesetzt sind. Die Frage ist nicht
+"wo liegen die Daten" sondern "wer hat Zugriff und was ist dokumentiert".
+
 ### Empfehlung je Zielgruppe
 
 | Zielgruppe | Empfehlung |
 |-----------|------------|
-| KMU, kein eigenes IT-Team | SaaS für alles ausser strategischen Risiken; DPA prüfen |
-| Supplier mit Zertifizierungspflicht | Hybrid: SaaS für Docs, self-hosted für Risiken |
-| NIS2-betroffen, eigenes IT-Team | Self-hosted bevorzugt; SaaS für unkritische Inhalte |
-| Modernisierer (von SharePoint) | SaaS als Übergangslösung, mittelfristig self-hosted |
+| KMU ohne IT-Infrastruktur | 100% Cloud mit DPA; Asset-Register als Spreadsheet oder VCS |
+| Supplier mit Zertifizierungspflicht | 100% Cloud oder Hybrid; DPA und EU-Hosting prüfen |
+| NIS2-betroffen, eigenes IT-Team | Hybrid oder self-hosted für Risiken und Incidents |
+| Modernisierer (von SharePoint) | SaaS als Einstieg; Migration zu self-hosted optional |
