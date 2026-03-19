@@ -1,0 +1,32 @@
+{{ context }}
+
+Erstelle einen **internen Auditbericht** für diese Organisation.
+
+Parameter:
+- Audit-Scope: {{ audit_scope }}
+- Audit-Datum: {{ audit_date }}
+- Auditor: {{ auditor }}
+
+Anforderungen:
+- Umfang: 500–800 Wörter
+- Struktur:
+  1. Zusammenfassung (Executive Summary, max. 100 Wörter)
+  2. Auditumfang und -ziele
+  3. Methodik (Interviews, Dokumentenprüfung, technische Tests)
+  4. Feststellungen (mindestens 3 Findings, davon mind. 1 kritisch)
+     - Je Finding: Beschreibung, Normreferenz (ISO 27001:2022 Control),
+       Nachweis, Bewertung (kritisch/major/minor/Beobachtung), Empfehlung
+  5. Gesamtbewertung
+  6. Maßnahmenplan (tabellarisch: Finding, Maßnahme, Verantwortlicher, Frist)
+
+Ausgabe als Markdown mit YAML-Frontmatter:
+
+```yaml
+---
+title: Interner Auditbericht – {{ audit_scope }}
+datum: {{ audit_date }}
+auditor: {{ auditor }}
+status: Entwurf
+klassifikation: Vertraulich
+---
+```

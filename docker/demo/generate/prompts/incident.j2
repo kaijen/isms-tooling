@@ -1,0 +1,34 @@
+{{ context }}
+
+Erstelle einen **Sicherheitsvorfall-Bericht** (Incident Report) für diese Organisation.
+
+Parameter:
+- Vorfalltyp: {{ incident_type }}
+- Schweregrad: {{ severity }}
+
+Anforderungen:
+- Realistisches, branchenspezifisches Szenario
+- Struktur:
+  1. Vorfallübersicht (Titel, Datum/Uhrzeit, Entdeckung, Schweregrad)
+  2. Beschreibung des Vorfalls (Was ist passiert?)
+  3. Betroffene Systeme und Daten
+  4. Zeitlicher Ablauf (Timeline als Tabelle: Zeitpunkt, Ereignis, Handlung)
+  5. Sofortmaßnahmen (was wurde unmittelbar getan?)
+  6. NIS2-Meldepflicht: Einschätzung ob meldepflichtig (mit Begründung)
+  7. Ursachenanalyse (Root Cause)
+  8. Lessons Learned und langfristige Maßnahmen
+
+Ausgabe als Markdown mit YAML-Frontmatter:
+
+```yaml
+---
+title: Incident Report – [Kurztitel]
+incident_id: INC-[Jahr]-[Nummer]
+datum_entdeckung: [Datum]
+datum_abschluss: [Datum oder "offen"]
+schweregrad: {{ severity }}
+status: [Offen / In Bearbeitung / Abgeschlossen]
+nis2_meldepflichtig: [Ja / Nein / Prüfung erforderlich]
+klassifikation: Vertraulich
+---
+```

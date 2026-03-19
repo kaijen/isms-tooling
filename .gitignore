@@ -3,3 +3,4 @@ docker/szenarien/**/.env
 _site/
 .jekyll-cache/
 Gemfile.lock
+output/

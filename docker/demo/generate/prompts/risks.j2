@@ -1,0 +1,18 @@
+{{ context }}
+
+Erstelle {{ count }} realistische ISMS-Risiken für diese Organisation.
+
+Jedes Risiko muss folgende Felder enthalten:
+- title: Prägnanter Risikotitel (max. 80 Zeichen)
+- description: Beschreibung der Bedrohung und möglichen Auswirkung (2-3 Sätze)
+- queue: Eine von: "Risiken::Strategisch", "Risiken::Operativ", "Risiken::Technisch"
+- wahrscheinlichkeit: Eine von: "1-Selten", "2-Möglich", "3-Wahrscheinlich", "4-Fast sicher"
+- schadenshoehe: Eine von: "1-Gering", "2-Mittel", "3-Hoch", "4-Kritisch"
+- risikowert: Produkt aus Wahrscheinlichkeitsstufe × Schadensstufe (1–16)
+- bezugsobjekt_typ: Eine von: "Asset", "Prozess", "Organisationseinheit", "Externer Akteur", "Regulatorisch"
+- bezugsobjekt_id: Konkreter Name des Bezugsobjekts (branchenspezifisch)
+- status_tag: Eine von: "status:identifiziert", "status:bewertet", "status:behandlung_geplant", "status:in_behandlung"
+- massnahmen: Liste mit 2-4 konkreten Behandlungsmaßnahmen
+
+Verteile die Risiken auf alle drei Queues. Mindestens ein strategisches Risiko.
+Ausgabe als valides JSON-Array ohne zusätzlichen Text.

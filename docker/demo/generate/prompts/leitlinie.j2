@@ -1,0 +1,24 @@
+{{ context }}
+
+Erstelle die **ISMS-Leitlinie** (Information Security Policy) für diese Organisation.
+
+Anforderungen:
+- Strategisches Dokument, von der Geschäftsführung unterzeichnet
+- Umfang: 400–600 Wörter
+- Struktur: Zweck, Geltungsbereich, Schutzziele, Verpflichtung der Leitung,
+  Grundsätze, Verantwortlichkeiten, Gültigkeitsregelung
+- Branchenspezifische Risiken und Schutzziele benennen
+- Ausgabe als Markdown mit YAML-Frontmatter:
+
+```yaml
+---
+title: ISMS-Leitlinie
+version: "1.0"
+status: Freigegeben
+klassifikation: Intern
+verantwortlich: Geschäftsführung
+freigegeben_von: [Name der Geschäftsführung]
+datum: [heutiges Datum]
+naechste_pruefung: [in 12 Monaten]
+---
+```

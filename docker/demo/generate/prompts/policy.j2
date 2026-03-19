@@ -1,0 +1,25 @@
+{{ context }}
+
+Erstelle die Richtlinie **"{{ policy_name }}"** für diese Organisation.
+
+Anforderungen:
+- Operatives Dokument (eine Ebene unter der Leitlinie)
+- Umfang: 300–500 Wörter
+- Struktur: Zweck, Geltungsbereich, Grundsätze/Anforderungen (als nummerierte Liste),
+  Rollen und Verantwortlichkeiten, Ausnahmen, Verstöße
+- Konkrete, umsetzbare Anforderungen — keine abstrakten Prinzipien
+- Ausgabe als Markdown mit YAML-Frontmatter:
+
+```yaml
+---
+title: {{ policy_name }}
+version: "1.0"
+status: Freigegeben
+klassifikation: Intern
+verantwortlich: [passende Rolle]
+freigegeben_von: ISB
+datum: [heutiges Datum]
+naechste_pruefung: [in 12 Monaten]
+referenz_norm: [relevante ISO 27001:2022 Controls]
+---
+```
